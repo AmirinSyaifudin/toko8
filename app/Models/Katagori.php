@@ -10,4 +10,10 @@ class Katagori extends Model
     use HasFactory;
     protected $table = 'katagori';
     protected $guarded = [];
+    public $timestamps = false;
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class);
+    }
 }

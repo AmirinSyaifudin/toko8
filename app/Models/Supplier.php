@@ -1,22 +1,21 @@
 <?php
 
 namespace App\Models;
-// namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Supplier extends Model
 {
     use HasFactory;
-
-    protected $table = 'customers';
+    
+    protected $table = 'suppliers';
     protected $guarded = [];
     public $timestamps = false;
 
-     public function user()
+    public function produk()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasMany(Produk::class);
     }
     
      public function getFoto()
@@ -31,5 +30,6 @@ class Customer extends Model
         //https://placeholder.com/
         return 'https://via.placeholder.com/150x200.png?text=No+Cover';
     }
+
 
 }
