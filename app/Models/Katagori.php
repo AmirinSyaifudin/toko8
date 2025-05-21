@@ -11,6 +11,7 @@ class Katagori extends Model
     protected $table = 'katagori';
     protected $guarded = [];
     public $timestamps = false;
+    // protected $primaryKey = 'id';
 
     public function produk()
     {

@@ -41,9 +41,16 @@ Route::group(['middleware' => ['auth' => 'CheckRole:customer']], function () {
 Route::group(['middleware' => ['auth' => 'CheckRole:admin']], function () {
     Route::namespace('Admin')->group(function () {
         Route::get('katagori', 'KatagoriController@index')->name('katagori');
+        Route::get('katagori/data', 'DataController@katagori')->name('katagori.data');
+        Route::get('/katagori/create', 'KatagoriController@create')->name('katagori.create');
+        Route::post('/katagori', 'KatagoriController@store')->name('katagori.store');
+        Route::get('/katagori/{katagori}/edit', 'KatagoriController@edit')->name('katagori.edit');
+        Route::put('/katagori/{katagori}','KatagoriController@update')->name('katagori.update');
+        Route::delete('/katagori/{katagori}','KatagoriController@destroy')->name('katagori.destroy');
+
         Route::get('produk', 'ProdukController@index')->name('produk');
         Route::get('datacustomer', 'CustomerController@index')->name('datacustomer');
-         Route::get('datasuppliyer', 'SuppliyerController@index')->name('datasuppliyer');
+        Route::get('datasuppliyer', 'SuppliyerController@index')->name('datasuppliyer');
     });
 });
 

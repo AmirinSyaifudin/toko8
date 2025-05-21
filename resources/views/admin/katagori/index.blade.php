@@ -2,150 +2,179 @@
 
 @section('content')
       <h1>Data Katagori </h1>
-            <div class="box">
-                  <div class="box-header">
-                  <h3 class="box-title">Data Table Katagori</h3>
-                        {{-- <a class="btn btn-success" href="javascript:void(0)" id="createNewKelas">Tambah Data Kelas</a> --}}
-                  <a href="" class="btn btn-success" data-toggle="modal" data-target="#modal-success">
-                Launch Success Modal
-                  </a>      
-                 
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body">
-
-                  <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                        <div class="row">
-                              <div class="col-sm-6">
-                                    <div class="dataTables_length" id="example1_length">
-                                          <label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                          </select> entries</label>
-                                    </div>
-                              </div>
-                              <div class="col-sm-6">
-                                    <div id="example1_filter" class="dataTables_filter">
-                                          <label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label>
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="row">
-                              <div class="col-sm-12">
-                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                          <thead>
-                                          <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 189.005px;">Rendering engine</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 239.144px;">Browser</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 219.78px;">Platform(s)</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 163.067px;">Engine version</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 119.873px;">CSS grade</th></tr>
-                                          </thead>
-                                          <tbody>
-                                                <tr role="row" class="odd">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Firefox 1.0</td>
-                                                      <td>Win 98+ / OSX.2+</td>
-                                                      <td>1.7</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="even">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Firefox 1.5</td>
-                                                      <td>Win 98+ / OSX.2+</td>
-                                                      <td>1.8</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="odd">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Firefox 2.0</td>
-                                                      <td>Win 98+ / OSX.2+</td>
-                                                      <td>1.8</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="even">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Firefox 3.0</td>
-                                                      <td>Win 2k+ / OSX.3+</td>
-                                                      <td>1.9</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="odd">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Camino 1.0</td>
-                                                      <td>OSX.2+</td>
-                                                      <td>1.8</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="even">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Camino 1.5</td>
-                                                      <td>OSX.3+</td>
-                                                      <td>1.8</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="odd">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Netscape 7.2</td>
-                                                      <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                                      <td>1.7</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="even">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Netscape Browser 8</td>
-                                                      <td>Win 98SE+</td>
-                                                      <td>1.7</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="odd">
-                                                      <td class="sorting_1">Gecko</td>
-                                                      <td>Netscape Navigator 9</td>
-                                                      <td>Win 98+ / OSX.2+</td>
-                                                      <td>1.8</td>
-                                                      <td>A</td>
-                                                </tr><tr role="row" class="even">
-                                                <td class="sorting_1">Gecko</td>
-                                                <td>Mozilla 1.0</td>
-                                                <td>Win 95+ / OSX.1+</td>
-                                                <td>1</td>
-                                                <td>A</td>
-                                                </tr>
-                                          </tbody>
-                                          <tfoot>
-                                          <tr>
-                                                <th rowspan="1" colspan="1">Rendering engine</th>
-                                                <th rowspan="1" colspan="1">Browser</th>
-                                                <th rowspan="1" colspan="1">Platform(s)</th>
-                                                <th rowspan="1" colspan="1">Engine version</th>
-                                                <th rowspan="1" colspan="1">CSS grade</th></tr>
-                                          </tfoot>
-                                    </table>
-                              </div>
-                        </div>
-                  <div class="row">
-                        <div class="col-sm-5">
-                              <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                        </div>
-                              <div class="col-sm-7">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                          <ul class="pagination">
-                                                <li class="paginate_button previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
-                                                </li>
-                                                <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
-                                                </li>
-                                                <li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
-                                                </li>
-                                          </ul>
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
+          <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">DATA KATAGORI</h3><br><br>
+                    <a href="{{ route('katagori.create')}}" class="btn btn-primary">ADD Katagori</a>
+                    {{-- <a class="btn btn-success" href="javascript:void(0)" id="createNewKatagori">Tambah Data Katagori</a> --}}
+                </div>
+                <div class="box-body table-responsive">
+                    <table id="dataTable" class="table table-bordered table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th style="text-align: center">ID</th>
+                                    <th style="text-align: center">NAMA Katagori</th>
+                                    <th style="text-align: center">KETERANGAN</th>
+                                    <th style="text-align: center" width="180px">ACTION</th>
+                                </tr>
+                            </thead>
+                    </table>
+                </div>
             </div>
-            <!-- /.box-body -->
-          </div>
+
+            <form action="" method="post" id="deleteForm">
+                @csrf
+                @method("DELETE")
+                <input type="submit" value="Hapus"  style="display: none">
+            </form>
+
+{{-- create ajax --}}
+{{-- <div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelHeading"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="katagoriForm" name="katagoriForm" class="form-horizontal">
+                   <input type="hidden" name="id" id="id">
+                   <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">katagori</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="nama_katagori" name="nama_katagori" 
+                            placeholder="Enter Nama katagori" value="" maxlength="50" required>
+                        </div>
+                    </div>               
+                   
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">KETERANGAN</label>
+                        <div class="col-sm-12">
+                            <textarea id="keterangan" name="keterangan" required
+                            placeholder="Enter Keterangan" class="form-control">
+                        </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Simpan</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">
+								<i class="fa fa-times"></i> Closee
+							</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> --}}
+        
+
+{{-- editajax  --}}
+{{-- <div class="modal fade" id="ajaxModelEdit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modHeading"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="updatekatagoriForm" name="katagoriForm" class="form-horizontal">
+                   <input type="hidden" name="katagori_id" id="katagori_id">
+                   <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">NAMA KATAGORI</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="katagori" name="nama_katagori" 
+                            placeholder="Enter Nama katagori" value="" maxlength="50" required>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">KETERANGAN</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="katagori" name="nama_katagori" 
+                            placeholder="Enter Nama katagori" value="" maxlength="50" required>
+                        </div>
+                    </div>               
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="id" value="" id="katagori_id_edit">
+                            <button type="submit" class="btn btn-primary"value="create">UPDATE</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">
+								<i class="fa fa-times"></i> Closee
+							</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
 @endsection
+
+@push('scripts')
+    <script>
+                $(function () {
+
+                    //    $.ajaxSetup({
+                    //     headers: {
+                    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    //     }
+                    //     });
+
+                        $('#dataTable').DataTable({
+                            processing: true,
+                            serverSide: true,
+                            ajax: '{{ route('katagori.data') }}',
+                            columns: [
+                                { data: 'DT_RowIndex', orderable: false, searchable : false},
+                                {data: 'nama_katagori', name: 'nama_katagori'},
+                                {data: 'keterangan', name: 'keterangan'},
+                                { data: 'action', name: 'action', orderable: false, searchable: false},
+                            ]
+                        });
+                });
+
+                // create 
+                // $('#createNewKatagori').click(function () {
+                //     $('#saveBtn').val("create-katagori");
+                //     $('#id').val('');
+                //     $('#katagoriForm').trigger("reset");
+                //     $('#modelHeading').html("Tambah Data Katagori");
+                //     $('#ajaxModel').modal('show');
+                // });
+
+                 //createupdate
+                // $('#saveBtn').click(function (e) {
+                //     e.preventDefault();
+                //     $(this).html('Save');
+                //         $.ajax({
+                //             data: $('#katagoriForm').serialize(),
+                //             url: "{{ route('katagori.store') }}",
+                //             type: "POST",
+                //             dataType: 'json',
+                //             success: function (data) {
+                //                 $('#katagoriForm').trigger("reset");
+                //                 $('#ajaxModel').modal('hide');
+                //                 table.draw();
+                //             },
+                //             error: function (data) {
+                //                 console.log('Error:', data);
+                //                 $('#saveBtn').html('Save Changes');
+                //             }
+                //         });
+                // });
+
+
+                // edit
+                // $('body').on('click', '.edit', function () {
+                //     $('#katagori').val($(this).data('title'));
+                //     $('#katagori_id_edit').val($(this).data('id'));
+                //     $('#modHeading').html("Edit Data Katagori");
+                //     $('#ajaxModelEdit').modal('show');
+                //     return false;
+                // });
+                        
+
+    </script>
+@endpush

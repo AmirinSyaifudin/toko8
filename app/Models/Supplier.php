@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'suppliers';
     protected $guarded = [];
     public $timestamps = false;
@@ -18,7 +18,7 @@ class Supplier extends Model
         return $this->hasMany(Produk::class);
     }
     
-     public function getFoto()
+    public function getFoto()
     {
         if (substr($this->foto, 0, 5) == "https") {
             return $this->foto;
