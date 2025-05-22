@@ -85,7 +85,8 @@ class KatagoriController extends Controller
             'keterangan'
         ));
 
-        return redirect()->route('katagori');
+        return redirect()->route('katagori')
+        ->with('success','Data Katagori Berhasil di Tambahkan !!!');
         // Katagori::updateOrCreate(
         //     [
         //         'id'            => $request->id
@@ -138,7 +139,9 @@ class KatagoriController extends Controller
         ]);
 
         $katagori->update($request->only('nama_katagori','keterangan'));
-        return redirect()->route('katagori');
+
+        return redirect()->route('katagori')
+        ->with('info','Data Katagori Berhasil di Update !!!');
     }
 
     /**
@@ -151,7 +154,8 @@ class KatagoriController extends Controller
     {
         $katagori->delete();
 
-        return redirect()->route('katagori');
+        return redirect()->route('katagori')
+        ->with('danger','Data Katagori Berhasil di Hapus !!!');
         
     }
 }

@@ -2,13 +2,18 @@
 
 @section('content')
       <h1>Data Katagori </h1>
+       @include('admin.templates.partials.alert')
           <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">DATA KATAGORI</h3><br><br>
-                    <a href="{{ route('katagori.create')}}" class="btn btn-primary">ADD Katagori</a>
+                    <!-- button to trigger the action -->
+                    {{-- <button class="btn btn-primary" onclick="md.showNotification('top','right')">Top Right Notification</button> --}}
+
+                    <a href="{{ route('katagori.create')}}" class="btn btn-primary" >ADD Katagori</a>
                     {{-- <a class="btn btn-success" href="javascript:void(0)" id="createNewKatagori">Tambah Data Katagori</a> --}}
                 </div>
-                <div class="box-body table-responsive">
+
+               <div class="box-body table-responsive">
                     <table id="dataTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr class="text-center">
@@ -113,6 +118,8 @@
 @endsection
 
 @push('scripts')
+<script src="{{ asset('admin/assets/plugins/bs.notify.min.js') }}"></script>
+ @include('admin.templates.partials.alert')
     <script>
                 $(function () {
 
