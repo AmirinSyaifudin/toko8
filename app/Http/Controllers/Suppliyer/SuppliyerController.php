@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Suppliyer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Customer;
 
-class CustomerController extends Controller
+class SuppliyerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,24 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        return view('admin.datacustomer.index');
-        // return view('customer.index');
+        return view('suppliyer.index');
     }
 
-    
+    public function profil()
+    {
+        return view('suppliyer.profil.profil');
+    }
+
+    public function supliyerproduk()
+    {
+
+        return view('suppliyer.dataproduk.index');
+    }
+
+    public function editprofil()
+    {
+        return view('suppliyer.profil.editprofil');
+    }
 
     /**
      * Show the form for creating a new resource.

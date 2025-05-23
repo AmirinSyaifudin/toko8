@@ -34,7 +34,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth' => 'CheckRole:customer']], function () {
     Route::namespace('Customer')->group(function () {
         Route::get('infocustomer', 'CustomerController@index')->name('infocustomer');
-         Route::get('dataproduk', 'CustomerController@dataproduk')->name('dataproduk');
+        Route::get('profilcustomer', 'CustomerController@profil')->name('profilcustomer');
+        Route::get('dataproduk', 'CustomerController@dataproduk')->name('dataproduk');
     });
 });
 
@@ -47,10 +48,17 @@ Route::group(['middleware' => ['auth' => 'CheckRole:admin']], function () {
         Route::get('/katagori/{katagori}/edit', 'KatagoriController@edit')->name('katagori.edit');
         Route::put('/katagori/{katagori}','KatagoriController@update')->name('katagori.update');
         Route::delete('/katagori/{katagori}','KatagoriController@destroy')->name('katagori.destroy');
+        
+        // suppliyer
+        Route::get('datasuppliyer', 'SuppliyerController@index')->name('datasuppliyer');
+        Route::get('datasuppliyer/data', 'DataController@suppliyer')->name('datasuppliyer.data');
+        Route::get('/datasuppliyer/create', 'SuppliyerController@create')->name('datasuppliyer.create');
+        Route::post('/datasuppliyer', 'SuppliyerController@store')->name('datasuppliyer.store');
 
+        // Produk   
         Route::get('produk', 'ProdukController@index')->name('produk');
         Route::get('datacustomer', 'CustomerController@index')->name('datacustomer');
-        Route::get('datasuppliyer', 'SuppliyerController@index')->name('datasuppliyer');
+
     });
 });
 
@@ -59,5 +67,14 @@ Route::group(['middleware' => ['auth' => 'CheckRole:cashier']], function () {
         Route::get('dataprodukcashier', 'ProdukController@index')->name('dataprodukcashier');
         Route::get('datacustomercashier', 'CustomerController@index')->name('datacustomercashier');
         Route::get('datasuppliyercashier', 'SuppliyerController@index')->name('datasuppliyercashier');
+    });
+});
+
+Route::group(['middleware' => ['auth' => 'CheckRole:suppliyer']], function () {
+    Route::namespace('Suppliyer')->group(function () {
+        Route::get('suppliyer', 'SuppliyerController@index')->name('suppliyer'); 
+        Route::get('suppliyerproduk', 'SuppliyerController@supliyerproduk')->name('suppliyerproduk');
+        Route::get('profilsuppliyer', 'SuppliyerController@profil')->name('profilsuppliyer');
+        Route::get('editprofilsuppliyer', 'SuppliyerController@editprofil')->name('editprofilsuppliyer');
     });
 });

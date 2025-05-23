@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Suppliyer;
 use Illuminate\Http\Request;
 
 class SuppliyerController extends Controller
@@ -14,8 +15,16 @@ class SuppliyerController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.datasuppliyer.index');
+        return view('admin.datasuppliyer.index', [
+            'nama'              => 'nama',
+            'tgl_lahir'         => 'tgl_lahir',
+            'tmpt_lahir'        => 'tmpt_lahir',
+            'email'             => 'email',
+            'kontak_suplier'   => 'kontak_suplier',
+            'no_telpon'         => 'no_telpon',
+            'alamat'            => 'alamat',
+            'keterangan'        => 'keterangan'
+        ]);
     }
 
     /**
@@ -25,7 +34,16 @@ class SuppliyerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.datasuppliyer.create', [
+            'nama'              => 'nama',
+            'tgl_lahir'         => 'tgl_lahir',
+            'tmpt_lahir'        => 'tmpt_lahir',
+            'email'             => 'email',
+            'kontak_suplier'   => 'kontak_suplier',
+            'no_telpon'         => 'no_telpon',
+            'alamat'            => 'alamat',
+            'keterangan'        => 'keterangan'
+        ]);
     }
 
     /**
@@ -36,7 +54,41 @@ class SuppliyerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request, [
+            'nama'              => 'required|min:3',
+            'foto'              => 'file|image', // dalam bentuk file format image
+            'tgl_lahir'         => 'required',
+            'tmpt_lahir'        => 'required',
+            'email'             => 'required',
+            'kontak_suplier'    => 'required',
+            'no_telpon'         => 'required',
+            'alamat'            => 'required',
+            'keterangan'        => 'required'
+        ]);
+
+        //   if ($request->hasFile('foto')) {
+        //     $file  = $request->file('foto');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time() . '.' . $extension;
+        //     $file->move('assets/covers/', $filename);
+        //     $suppliyer->foto = $filename;
+        // }
+
+
+        Suppliyer::create([
+            'nama'             => $request->nama,
+            'foto'             => $foto,
+            'tgl_lahir'        => $request->tgl_lahir,
+            'tmpt_lahir'       => $request->tmpt_lahir,
+            'email'            => $request->email,
+            'kontak_suplier'   => $request->kontak_suplier,
+            'no_telpon'        => $request->no_telpon,
+            'alamat'           => $request->alamat,
+            'keterangan'       => $request->keterangan
+        ]);
+
+        return redirect()->route('datasuppliyer')
+        ->with('success', 'Data Suppliyer Berhasil di Tambahkan !!!');
     }
 
     /**

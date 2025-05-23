@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class Suppliyer extends Model
 {
     use HasFactory;
 
@@ -30,6 +30,5 @@ class Supplier extends Model
         //https://placeholder.com/
         return 'https://via.placeholder.com/150x200.png?text=No+Cover';
     }
-
 
 }

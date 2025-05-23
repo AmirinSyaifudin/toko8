@@ -1,31 +1,26 @@
 @extends('admin.templates.default')
 
 @section('content')
-      <h1>Data Katagori </h1>
-       @include('admin.templates.partials.alert')
+      {{-- <h1>DATA PRODUK </h1> --}}
+       {{-- @include('admin.templates.partials.alert') --}}
           <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">DATA KATAGORI</h3><br><br>
-                    <a href="{{ route('katagori.create')}}" class="btn btn-primary" >ADD Katagori</a>
+                    <h3 class="box-title">DATA PRODUK</h3><br><br>
+                    <a href="" class="btn btn-primary" >TAMBAH PRODUK</a>
                 </div>
                <div class="box-body table-responsive">
                     <table id="dataTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr class="text-center">
                                     <th style="text-align: center">ID</th>
-                                    <th style="text-align: center">NAMA Katagori</th>
-                                    <th style="text-align: center">KETERANGAN</th>
+                                    <th style="text-align: center">NAMA</th>
+                                    {{-- <th style="text-align: center">KETERANGAN</th> --}}
                                     <th style="text-align: center" width="180px">ACTION</th>
                                 </tr>
                             </thead>
                     </table>
                 </div>
             </div>
-            <form action="" method="post" id="deleteForm">
-                @csrf
-                @method("DELETE")
-                <input type="submit" value="Hapus"  style="display: none">
-            </form>
 
 {{-- create ajax --}}
 {{-- <div class="modal fade" id="ajaxModel" aria-hidden="true">
@@ -113,26 +108,19 @@
 <script src="{{ asset('admin/assets/plugins/bs.notify.min.js') }}"></script>
  @include('admin.templates.partials.alert')
     <script>
-                $(function () {
+            //     $(function () {
 
-                    //    $.ajaxSetup({
-                    //     headers: {
-                    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    //     }
-                    //     });
-
-                        $('#dataTable').DataTable({
-                            processing: true,
-                            serverSide: true,
-                            ajax: '{{ route('katagori.data') }}',
-                            columns: [
-                                { data: 'DT_RowIndex', orderable: false, searchable : false},
-                                {data: 'nama_katagori', name: 'nama_katagori'},
-                                {data: 'keterangan', name: 'keterangan'},
-                                { data: 'action', name: 'action', orderable: false, searchable: false},
-                            ]
-                        });
-                });
+            //             $('#dataTable').DataTable({
+            //                 processing: true,
+            //                 serverSide: true,
+            //                 ajax: '{{ route('katagori.data') }}',
+            //                 columns: [
+            //                     { data: 'DT_RowIndex', orderable: false, searchable : false},
+            //                     {data: 'nama', name: 'nama'},
+            //                     { data: 'action', name: 'action', orderable: false, searchable: false},
+            //                 ]
+            //             });
+            //     });
 
                 // create 
                 // $('#createNewKatagori').click(function () {

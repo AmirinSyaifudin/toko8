@@ -48,6 +48,17 @@
             </div>
           </div>
       @endcan
+      @can('isSuppliyer')
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p>{{ auth()->user()->name }}</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+      @endcan
       <!-- search form -->
       {{-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
@@ -112,6 +123,13 @@
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> --}}
        @endcan
        @can('isCustomer')
+        <li class="accordion-group @if (Request::segment(1) == 'profilcustomer') active @endif">
+          <a href="{{ route('profilcustomer') }}">
+            <i class="fa fa-calendar"></i> <span>Profil Customer</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
         <li class="accordion-group @if (Request::segment(1) == 'infocustomer') active @endif">
           <a href="{{ route('infocustomer') }}">
             <i class="fa fa-calendar"></i> <span>Profil Customer</span>
@@ -119,7 +137,8 @@
             </span>
           </a>
         </li>
-        <li>
+       
+         <li>
           <a href="{{ route ('dataproduk') }}">
             <i class="fa fa-calendar"></i> <span>Data Produk</span>
             <span class="pull-right-container">
@@ -145,6 +164,29 @@
         <li class="accordion-group @if (Request::segment(1) == 'datasuppliyercashier') active @endif">
           <a href="{{ route('datasuppliyercashier') }}">
             <i class="fa fa-envelope"></i> <span>Data Suppliyer</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+       @endcan
+       @can('isSuppliyer')
+        <li class="accordion-group @if (Request::segment(1) == 'profilsuppliyer') active @endif">
+          <a href="{{ route('profilsuppliyer') }}">
+            <i class="fa fa-envelope"></i> <span>PROFIL SUPPLIYER</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        {{-- <li class="accordion-group @if (Request::segment(1) == 'suppliyer') active @endif">
+          <a href="{{ route('suppliyer') }}">
+            <i class="fa fa-envelope"></i> <span>Data Suppliyer</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li> --}}
+        <li class="accordion-group @if (Request::segment(1) == 'suppliyerproduk') active @endif">
+          <a href="{{ route('suppliyerproduk') }}">
+            <i class="fa fa-calendar"></i> <span>DATA PRODUK</span>
             <span class="pull-right-container">
             </span>
           </a>

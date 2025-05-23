@@ -24,6 +24,12 @@ class CustomerController extends Controller
         return view('customer.dataproduk');
     }
 
+    public function profil()
+    {
+
+        return view('customer.profil');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

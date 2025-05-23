@@ -40,5 +40,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->role == 'cashier';
         });
 
+        Gate::define('isSuppliyer', function ($user) {
+            return $user->role == 'suppliyer';
+        });
+
     }
 }

@@ -115,6 +115,7 @@
 										<option value="admin">Admin</option>
 										<option value="customer">Customer</option>
                                         <option value="cashier">Cashier</option>
+                                        <option value="suppliyer">Suppliyer</option>
 									</select>
                                 </div>
                                 <span>
