@@ -17,7 +17,13 @@ class CustomerController extends Controller
     {
         //
         return view('admin.datacustomer.index',[
-            'nama_customer'     => 'nama_customer'
+            'nama_customer'     => 'nama_customer',
+            'tgl_lahir'         => 'tgl_lahir',
+            'tmpt_lahir'        => 'tmpt_lahir',
+            'email'             => 'email',
+            'no_telpon'         => 'no_telpon',
+            'alamat'            => 'alamat',
+            'keterangan'        => 'keterangan'
         ]);
         // return view('customer.index');
     }

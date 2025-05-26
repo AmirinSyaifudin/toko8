@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth' => 'CheckRole:customer']], function () {
         Route::get('infocustomer', 'CustomerController@index')->name('infocustomer');
         Route::get('profilcustomer', 'CustomerController@profil')->name('profilcustomer');
         Route::get('settingprofil', 'CustomerController@create')->name('settingprofil');
-        Route::post('saveprofil', 'CustomerController@store')->name('saveprofil.store');
+        Route::post('savecustomer', 'CustomerController@store')->name('savecustomer.store');
         Route::get('editprofil/{id}', 'CustomerController@edit')->name('editprofil');
         Route::put('update/{id}', 'CustomerController@update')->name('update');
         // Route::post('saveprofil', 'CustomerController@store')->name('saveprofil.store');

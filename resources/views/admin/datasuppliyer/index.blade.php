@@ -6,7 +6,7 @@
           <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">DATA SUPPLIYER</h3><br><br>
-                    <a href="{{ route('datasuppliyer.create') }}" class="btn btn-primary" >ADD SUPPLIYER</a>
+                    {{-- <a href="{{ route('datasuppliyer.create') }}" class="btn btn-primary" >ADD SUPPLIYER</a> --}}
                 </div>
                <div class="box-body table-responsive">
                     <table id="dataTable" class="table table-bordered table-hover">

@@ -52,9 +52,9 @@
                         
                       <li class="list-group-item">
                        @if ($dataprofil == null )
-                            <b>EMAIL</b> <a class="pull-right">DATA KOSONG</a>
+                            <b>EMAIL</b> <a class="pull-right">{{ auth()->user()->email }}</a>
                         @else
-                             <b>EMAIL</b> <a class="pull-right">{{ $dataprofil->email }}</a>
+                             <b>EMAIL</b> <a class="pull-right">{{ auth()->user()->email }}</a>
                         @endif
                       </li>
                       <li class="list-group-item">
