@@ -13,6 +13,11 @@ class Suppliyer extends Model
     protected $guarded = [];
     public $timestamps = false;
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    
     public function produk()
     {
         return $this->hasMany(Produk::class);

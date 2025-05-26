@@ -41,15 +41,23 @@ class DataController extends Controller
                         ->toJson();
     }
 
+     public function customer()
+    {
+        // return datatables()->of(Customer::query())->toJson();
+        $customer  = Customer::orderBy('nama_customer','ASC');
+                return datatables()->of($customer)
+                ->addColumn('action','admin.datacustomer.action')
+                ->addIndexColumn()
+                ->addColumns(['action'])
+                ->toJson();
+    }
+
     public function produk()
     {
         return datatables()->of(Produk::query())->toJson();
     }
 
-    public function customer()
-    {
-        return datatables()->of(Customer::query())->toJson();
-    }
+   
 
    
 }

@@ -2,7 +2,7 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     {{-- @php
-        $datacustomer = App\Customers::where('user_id', auth()->user()->id)->first();
+        $datacustomer = App\Customer::where('user_id', auth()->user()->id)->first();
     @endphp --}}
    
     <section class="sidebar">
@@ -130,14 +130,13 @@
             </span>
           </a>
         </li>
-        <li class="accordion-group @if (Request::segment(1) == 'infocustomer') active @endif">
+        {{-- <li class="accordion-group @if (Request::segment(1) == 'infocustomer') active @endif">
           <a href="{{ route('infocustomer') }}">
-            <i class="fa fa-calendar"></i> <span>Profil Customer</span>
+            <i class="fa fa-calendar"></i> <span>Data Customer</span>
             <span class="pull-right-container">
             </span>
           </a>
-        </li>
-       
+        </li> --}}
          <li>
           <a href="{{ route ('dataproduk') }}">
             <i class="fa fa-calendar"></i> <span>Data Produk</span>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="box">
         <div class="box-header">
-            <h2 class="box-title">UPDATE DATA SUPPLIYER</h2>
+            <h2 class="box-title">UPDATE DATA CUSTOMER</h2>
         </div>
 
             <div class="box-body">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group @error('nama_customer') has-error @enderror">
                         <label for="">NAMA CUSTOMER</label>
-                        <input type="text" name="nama_customer" class="form-control"  value="{{ $data->nama }}"> 
+                        <input type="text" name="nama_customer" class="form-control"  value="{{ $data->nama_customer }}"> 
                     </div>
                      <div class="form-group @error('tgl_lahir') has-error @enderror">
                         <label for="name" class="col-sm-2 control-label">TANGGAL LAHIR</label>

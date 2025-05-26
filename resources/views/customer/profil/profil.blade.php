@@ -5,12 +5,12 @@
       <div class="row">
         <div class="col-md-12">
             @if ($dataprofil == null )
-                 <a href="{{ route('setting') }}" class="btn btn-primary btn-block">
-                  <b>LENGKAPI DATA SUPPLIYER</b>
+                 <a href="{{ route('settingprofil') }}" class="btn btn-primary btn-block">
+                  <b>LENGKAPI DATA CUSTOMER</b>
                 </a>
             @else 
                 <a href="{{ route('editprofil', $dataprofil->id ) }}" class="btn btn-primary btn-block">
-                  <b>EDIT DATA PROFIL SUPPLIYER</b>
+                  <b>EDIT DATA PROFIL CUSTOMER</b>
                 </a>
             @endif
           <hr>
@@ -31,7 +31,7 @@
                         @if ($dataprofil == null )
                             <b>NAMA LENGKAP</b> <a class="pull-right">DATA KOSONG</a>
                         @else
-                             <b>NAMA LENGKAP</b> <a class="pull-right">{{ $dataprofil->nama }}</a>
+                             <b>NAMA LENGKAP</b> <a class="pull-right">{{ $dataprofil->nama_customer }}</a>
                         @endif
                       </li>
                       {{-- <li class="list-group-item">
@@ -62,13 +62,6 @@
                             <b>NO TELPON</b> <a class="pull-right">DATA KOSONG</a>
                         @else
                              <b>NO TELPON</b> <a class="pull-right">{{ $dataprofil->no_telpon }}</a>
-                        @endif
-                      </li>
-                      <li class="list-group-item">
-                       @if ($dataprofil == null )
-                            <b>KONTAK SUPPLIYER</b> <a class="pull-right">DATA KOSONG</a>
-                        @else
-                             <b>KONTAK SUPPLIYER</b> <a class="pull-right">{{ $dataprofil->no_telpon }}</a>
                         @endif
                       </li>
                       <li class="list-group-item">

@@ -39,7 +39,7 @@ class SuppliyerController extends Controller
             'tgl_lahir'         => 'tgl_lahir',
             'tmpt_lahir'        => 'tmpt_lahir',
             'email'             => 'email',
-            'kontak_suplier'   => 'kontak_suplier',
+            'kontak_suplier'    => 'kontak_suplier',
             'no_telpon'         => 'no_telpon',
             'alamat'            => 'alamat',
             'keterangan'        => 'keterangan'
@@ -66,13 +66,13 @@ class SuppliyerController extends Controller
             'keterangan'        => 'required'
         ]);
 
-        //   if ($request->hasFile('foto')) {
-        //     $file  = $request->file('foto');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename = time() . '.' . $extension;
-        //     $file->move('assets/covers/', $filename);
-        //     $suppliyer->foto = $filename;
-        // }
+          if ($request->hasFile('foto')) {
+            $file  = $request->file('foto');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('assets/covers/', $filename);
+            $suppliyer->foto = $filename;
+        }
 
 
         Suppliyer::create([

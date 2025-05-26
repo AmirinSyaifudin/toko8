@@ -16,7 +16,9 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        return view('admin.datacustomer.index');
+        return view('admin.datacustomer.index',[
+            'nama_customer'     => 'nama_customer'
+        ]);
         // return view('customer.index');
     }
 
