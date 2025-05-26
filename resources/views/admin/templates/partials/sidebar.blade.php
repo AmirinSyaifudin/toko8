@@ -176,6 +176,13 @@
             </span>
           </a>
         </li>
+        <li class="accordion-group @if (Request::segment(1) == 'katagorisuppliyer') active @endif">
+          <a href="{{ route('katagori') }}">
+            <i class="fa fa-calendar"></i> <span>Data Katagori</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
         {{-- <li class="accordion-group @if (Request::segment(1) == 'suppliyer') active @endif">
           <a href="{{ route('suppliyer') }}">
             <i class="fa fa-envelope"></i> <span>Data Suppliyer</span>

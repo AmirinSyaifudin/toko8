@@ -24,6 +24,8 @@ class DataController extends Controller
                         ->toJson();
     }
 
+    
+
     public function suppliyer()
     {
         // return datatables()->of(Suppliyer::query())->toJson();
