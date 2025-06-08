@@ -87,7 +87,7 @@
         </li> --}}
         @can('isAdmin')
         <li class="accordion-group @if (Request::segment(1) == 'katagori') active @endif">
-          <a href="{{ route('katagori') }}">
+          <a href="{{ route('adminkatagori') }}">
             <i class="fa fa-calendar"></i> <span>Data Katagori</span>
             <span class="pull-right-container">
             </span>
@@ -95,7 +95,7 @@
         </li>
         <li class="accordion-group @if (Request::segment(1) == 'produk') active @endif">
         {{-- <li class="treeview"> --}}
-          <a href="{{ route('produk') }}">
+          <a href="{{ route('adminproduk') }}">
             <i class="fa fa-files-o"></i>
             <span>Data  Produk</span>
             <span class="pull-right-container">
@@ -138,7 +138,7 @@
           </a>
         </li> --}}
          <li>
-          <a href="{{ route ('dataproduk') }}">
+          <a href="{{ route ('customerproduk') }}">
             <i class="fa fa-calendar"></i> <span>Data Produk</span>
             <span class="pull-right-container">
             </span>
@@ -178,7 +178,7 @@
         </li>
         <li class="accordion-group @if (Request::segment(1) == 'katagorisuppliyer') active @endif">
           <a href="{{ route('katagori') }}">
-            <i class="fa fa-calendar"></i> <span>Data Katagori</span>
+            <i class="fa fa-calendar"></i> <span>DATA KATAGORI</span>
             <span class="pull-right-container">
             </span>
           </a>
@@ -197,6 +197,14 @@
             </span>
           </a>
         </li>
+
+         {{-- <li class="accordion-group @if (Request::segment(1) == 'suppliyerproduk') active @endif">
+          <a href="{{ route('suppliyerproduk') }}">
+            <i class="fa fa-calendar"></i> <span>DATA PRODUK</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li> --}}
        @endcan
       </ul>
     </section>

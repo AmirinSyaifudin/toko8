@@ -19,10 +19,9 @@
             <div class="box-body box-profile">
                 @if ($dataprofil == null )
                     <img class="profile-user-img img-responsive img-circle" src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" alt="User profile picture">
-                    {{-- <img class="profile-user-img img-responsive img-circle" src="{{ asset($dataprofil->foto) }}" alt="User profile picture"> --}}
                 @else
-                    {{-- <img class="profile-user-img img-responsive img-circle" src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" alt="User profile picture"> --}}
-                    <img class="profile-user-img img-responsive img-circle" src="{{ asset($dataprofil->foto) }}" alt="User profile picture">
+                   {{-- {{ url ('/admin/assets/covers/'. $sp->foto) }} --}}
+                    <img class="profile-user-img img-responsive img-circle" src=" {{ url ('/admin/assets/covers/'. $dataprofil->foto) }}" alt="User profile picture">
                 @endif
               <h3 class="profile-username text-center"> {{ auth()->user()->name }}</h3>
                   <p class="text-muted text-center">{{ auth()->user()->role }}</p>
@@ -33,23 +32,7 @@
                         @else
                              <b>NAMA LENGKAP</b> <a class="pull-right">{{ $dataprofil->nama_customer }}</a>
                         @endif
-                      </li>
-                      {{-- <li class="list-group-item">
-                        @if ($dataprofil == null )
-                            <b>TANGGAL LAHIR</b> <a class="pull-right">DATA KOSONG</a>
-                        @else
-                             <b>TANGGAL LAHIR</b> <a class="pull-right">{{ $dataprofil->tgl_lahir }}</a>
-                        @endif
-                      </li> --}}
-                      {{-- <li class="list-group-item">
-                        @if ($dataprofil == null )
-                            <b>TEMPAT LAHIR</b> <a class="pull-right">DATA KOSONG</a>
-                        @else
-                             <b>TEMPAT LAHIR</b> <a class="pull-right">{{ $dataprofil->tmpt_lahir }}</a>
-                        @endif
-                      </li> --}}
-                       {{-- value="{{ auth()->user()->email }}" readonly --}}
-                        
+                      </li>   
                       <li class="list-group-item">
                        @if ($dataprofil == null )
                             <b>EMAIL</b> <a class="pull-right">{{ auth()->user()->email }}</a>
@@ -70,9 +53,6 @@
                         <p >DATA KOSONG</p> - <p >DATA KOSONG</p>
                         @else
                             <strong><i class="fa fa-map-marker margin-r-5"></i>TEMPAT & TANGGAL LAHIR</strong>
-                          {{-- <p >
-                            {{ $dataprofil->tgl_lahir }}
-                          </p> --}}
                           <p >
                             {{ $dataprofil->tmpt_lahir }} - {{ $dataprofil->tgl_lahir }}
                           </p>

@@ -11,35 +11,48 @@ use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    public function katagori()
+      public function adminkatagori()
     {
         //  return datatables()->of(Katagori::orderBy('nama_katagori','ASC'))
         //                                 ->toJson();
 
            $katagori = Katagori::orderBy('nama_katagori', 'ASC');      
            return datatables()->of($katagori)
-                        ->addColumn('action', 'admin.katagori.action')
+                        ->addColumn('action', 'suppliyer.katagori.action')
                         ->addIndexColumn() // membuat no urut
                         ->rawColumns(['action'])
                         ->toJson();
     }
 
+    // public function produks()
+    // {
+    //     $produks   = Produk::with('katagori')->orderBy('nama','ASC');
+    //     $produks->load('katagori');
+
+    //     return datatables()->of($produks)
+    //                     ->addColumn('katagori', function (Produk $model) {
+    //                         return $model->katagori->nama_katagori;
+    //                     })
+    //                     ->addColumn('action','suppliyer.dataproduk.action')
+    //                     ->addIndexColumn()
+    //                     ->rawColumns(['action'])
+    //                     ->toJson();
+
+    // }
     
 
     public function suppliyer()
     {
         // return datatables()->of(Suppliyer::query())->toJson();
         $suppliyer = Suppliyer::orderBy('nama', 'ASC');
+        
             return datatables()->of($suppliyer)
-                        //   ->editColumn(
-                        //         'cover',
-                        //         function (Suppliyer $model) {
-                        //             return '<img src="' . $model->getCover() . '" height="100px">'; // untuk merubah cover menjadi format img
-                        //         }
-                        //     )
+                       ->editColumn('foto', function ($row) {
+                                return '<img with="80" height="80" src="' . url('admin/assets/covers/', $row->foto) . '">';
+                            })
                         ->addColumn('action', 'admin.datasuppliyer.action')
                         ->addIndexColumn()
-                        ->addColumns(['action'])
+                        ->addColumns(['foto','action'])
                         ->toJson();
     }
 
@@ -47,17 +60,21 @@ class DataController extends Controller
     {
         // return datatables()->of(Customer::query())->toJson();
         $customer  = Customer::orderBy('nama_customer','ASC');
+
                 return datatables()->of($customer)
+                ->editColumn('foto', function ($row) {
+                                return '<img with="80" height="80" src="' . url('admin/assets/covers/', $row->foto) . '">';
+                            })
                 ->addColumn('action','admin.datacustomer.action')
                 ->addIndexColumn()
-                ->addColumns(['action'])
+                ->addColumns(['foto','action'])
                 ->toJson();
     }
 
-    public function produk()
-    {
-        return datatables()->of(Produk::query())->toJson();
-    }
+    // public function produk()
+    // {
+    //     return datatables()->of(Produk::query())->toJson();
+    // }
 
    
 

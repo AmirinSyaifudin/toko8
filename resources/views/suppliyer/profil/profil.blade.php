@@ -19,10 +19,11 @@
             <div class="box-body box-profile">
                 @if ($dataprofil == null )
                     <img class="profile-user-img img-responsive img-circle" src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" alt="User profile picture">
-                    {{-- <img class="profile-user-img img-responsive img-circle" src="{{ asset($dataprofil->foto) }}" alt="User profile picture"> --}}
+                    {{-- <img class="profile-user-img img-responsive img-circle" src="{{ $dataprofil->foto }}) }}" alt="User profile picture"> --}}
                 @else
-                    {{-- <img class="profile-user-img img-responsive img-circle" src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" alt="User profile picture"> --}}
-                    <img class="profile-user-img img-responsive img-circle" src="{{ asset($dataprofil->foto) }}" alt="User profile picture">
+                  {{-- <img class="profile-user-img img-responsive img-circle" src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" alt="User profile picture"> --}}
+                    <img class="profile-user-img img-responsive img-circle" src="     {{ url ('/admin/assets/covers/'. $dataprofil->foto) }} " alt="User profile picture">
+                    {{-- <img class="profile-user-img img-responsive img-circle" src="{{ asset($dataprofil->foto) }}" alt="User profile picture"> --}}
                 @endif
               <h3 class="profile-username text-center"> {{ auth()->user()->name }}</h3>
                   <p class="text-muted text-center">{{ auth()->user()->role }}</p>

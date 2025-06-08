@@ -7,7 +7,9 @@
 	
       @include('frontend.templates.partials.header')
 	
-	<section id="slider"><!--slider-->
+	@yield('content')
+
+	{{-- <section id="slider"><!--slider-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -761,7 +763,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	
 	@include('frontend.templates.partials.footer')
 	

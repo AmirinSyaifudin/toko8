@@ -10,10 +10,11 @@ class Katagori extends Model
     use HasFactory;
     protected $table = 'katagori';
     protected $guarded = [];
-    public $timestamps = false;
+    // public $timestamps = false;
+      public $timestamps = 'id';
     // protected $primaryKey = 'id';
 
-    public function produk()
+    public function produks()
     {
         return $this->hasMany(Produk::class);
     }

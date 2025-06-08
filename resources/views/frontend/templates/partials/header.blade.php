@@ -33,7 +33,7 @@
 							<a href="{{ asset('Eshopper/index.html') }}"><img src="{{ asset('Eshopper/images/home/logo.png') }}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
-							<div class="btn-group">
+							{{-- <div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									USA
 									<span class="caret"></span>
@@ -53,7 +53,7 @@
 									<li><a href="#">Canadian Dollar</a></li>
 									<li><a href="#">Pound</a></li>
 								</ul>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -87,18 +87,19 @@
 								<li><a href="{{ asset('Eshopper/index.html') }}" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     		<ul role="menu" class="sub-menu">
-								<li><a href="{{ asset('Eshopper/shop.html') }}">Products</a></li>
+								<li><a href="{{ route ('frontendproduk') }}">Produk</a></li>
+								{{-- <li><a href="{{ asset('Eshopper/shop.html') }}">Products</a></li> --}}
 								<li><a href="{{ asset('Eshopper/product-details.html') }}">Product Details</a></li> 
 								<li><a href="{{ asset('Eshopper/checkout.html') }}">Checkout</a></li> 
                                     </ul>
                                 </li> 
-					  <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+					  {{-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="{{ asset('Eshopper/blog.html') }}">Blog List</a></li>
 						    <li><a href="{{ asset('Eshopper/blog-single.html') }}">Blog Single</a></li>
                                     </ul>
-                                    </li> 
-                                          <li><a href="{{ asset('Eshopper/404.html') }}">404</a></li>
+                                 </li>  --}}
+                                          {{-- <li><a href="{{ asset('Eshopper/404.html') }}">404</a></li> --}}
                                           <li><a href="{{ asset('Eshopper/contact-us.html') }}">Contact</a></li>
                                           </ul>
 						</div>

@@ -20,37 +20,9 @@ class KatagoriController extends Controller
      */
     public function index(Request $request)
     {
-         return view('admin.katagori.index', [
-            'title'         => 'Data Katagori',
-            'keterangan'    => 'Keterangan'
-         ]);
+       $adminkatagori = DB::table('katagori')->get();
 
-        // $katagori = Katagori::orderBy('nama_katagori','ASC');
-        // if ($request->ajax() )
-        // {
-        //     $data = Katagori::latest()->get();
-        //      return datatables::of($katagori)
-        //         ->addIndexColumn()
-        //         ->addColumn('action', function ($row) {
-
-        //             $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  
-        //                 data-id="' . $row->id . '" 
-        //                 data-title="' . $row->nama_katagori . '" 
-        //                 data-keterangan="' . $row->keterangan . '" 
-        //                 data-original-title="Edit" 
-        //                 class="edit btn btn-primary btn-sm editKatagori">EDIT</a>';
-        //             $btn .= '&nbsp;&nbsp;';
-        //             $btn .= '&nbsp;&nbsp;';
-        //             $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-katagori_id="'.$row->katagori_id .'" 
-        //                                 data-original-title="Delete" class="btn btn-danger btn-sm deleteKatagori">Delete
-        //                          </a>';
-        //             return $btn;
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->make(true);
-
-        // }
-        // return view('admin.katagori.index',compact('katagori'));
+         return view('admin.katagori.index',compact('adminkatagori'));
        
     }
 

@@ -1,167 +1,73 @@
 @extends('admin.templates.default')
 
 @section('content')
-      {{-- <h1>DATA PRODUK </h1> --}}
-       {{-- @include('admin.templates.partials.alert') --}}
+      <h1>DATA PRODUK </h1>
+       @include('admin.templates.partials.alert')
           <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">DATA PRODUK</h3><br><br>
-                    <a href="" class="btn btn-primary" >TAMBAH PRODUK</a>
+                      {{-- <a class="btn btn-success" href="javascript:void(0)" id="createNewProduk">ADD DATA</a> --}}
+                    <a href="{{ route('suppliyerproduk.create')}}" class="btn btn-primary" >TAMBAH PRODUK</a>
                 </div>
                <div class="box-body table-responsive">
                     <table id="dataTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr class="text-center">
                                     <th style="text-align: center">ID</th>
+                                    <th style="text-align: center">FOTO</th>
+                                    {{-- <th style="text-align: center">KATAGORI</th> --}}
+                                    <th style="text-align: center">KODE</th>
                                     <th style="text-align: center">NAMA</th>
-                                    {{-- <th style="text-align: center">KETERANGAN</th> --}}
-                                    <th style="text-align: center" width="180px">ACTION</th>
+                                    <th style="text-align: center">HARGA PEMBELIAN </th>
+                                    <th style="text-align: center">HARGA PENJUALAN</th>
+                                    <th style="text-align: center">STOK</th>
+                                    <th style="text-align: center">UNIT</th>
+                                    <th style="text-align: center">KETERANGAN</th>
+                                    <th style="text-align: center" width="180px"></th>
+                                    <th style="text-align: center" width="180px"></th>
+                                    <th style="text-align: center" width="180px"></th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @forelse ($suppliyerproduk as $sp)
+                                    <tr> 
+                                        <td width='5'>  {{ $loop-> index +1 }} </td>
+                                        <td width='50'><img class="img-responsive" src="{{ url ('/admin/assets/covers/'. $sp->foto) }}"> </td>
+                                        {{-- <td width='20'> {{ $sp->kode }}</td> --}}
+                                         <td scope="row"> {{ generateKode($sp->kode)}} </td>
+                                        <td width='20'> {{ $sp->nama }}</td>
+                                        <td scope="row"> {{"Rp. ".formatRupiah($sp->harga_pembelian)}} </td>
+                                        <td scope="row"> {{"Rp. ".formatRupiah($sp->harga_penjualan)}} </td>
+                                        <td width='20'> {{ $sp->stok }}</td>
+                                        <td width='20'> {{ $sp->unit }}</td>
+                                        <td width='20'> {{ $sp->keterangan }}</td>
+                                        <td width='5'><a href="" class="btn btn-info">DETAIL</a></td>
+                                        <td width='5'><a href="" class="btn btn-warning">EDIT</a></td>
+                                        <td width='5'>
+                                            <form action="" method="post" style="display:inline;">
+                                                {{ csrf_field() }}
+                                                {{ method_field ('delete')}}
+                                                <button type="submit"  class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data?')">DELETE</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                @endforelse
+                            </tbody>
                     </table>
                 </div>
             </div>
-
-{{-- create ajax --}}
-{{-- <div class="modal fade" id="ajaxModel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modelHeading"></h4>
-            </div>
-            <div class="modal-body">
-                <form id="katagoriForm" name="katagoriForm" class="form-horizontal">
-                   <input type="hidden" name="id" id="id">
-                   <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">katagori</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="nama_katagori" name="nama_katagori" 
-                            placeholder="Enter Nama katagori" value="" maxlength="50" required>
-                        </div>
-                    </div>               
-                   
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">KETERANGAN</label>
-                        <div class="col-sm-12">
-                            <textarea id="keterangan" name="keterangan" required
-                            placeholder="Enter Keterangan" class="form-control">
-                        </textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Simpan</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">
-								<i class="fa fa-times"></i> Closee
-							</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
-        
-{{-- editajax  --}}
-{{-- <div class="modal fade" id="ajaxModelEdit" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modHeading"></h4>
-            </div>
-            <div class="modal-body">
-                <form id="updatekatagoriForm" name="katagoriForm" class="form-horizontal">
-                   <input type="hidden" name="katagori_id" id="katagori_id">
-                   <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">NAMA KATAGORI</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="katagori" name="nama_katagori" 
-                            placeholder="Enter Nama katagori" value="" maxlength="50" required>
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">KETERANGAN</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="katagori" name="nama_katagori" 
-                            placeholder="Enter Nama katagori" value="" maxlength="50" required>
-                        </div>
-                    </div>               
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            {{ method_field('PUT') }}
-                            <input type="hidden" name="id" value="" id="katagori_id_edit">
-                            <button type="submit" class="btn btn-primary"value="create">UPDATE</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">
-								<i class="fa fa-times"></i> Closee
-							</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 @endsection
 
 @push('scripts')
 <script src="{{ asset('admin/assets/plugins/bs.notify.min.js') }}"></script>
  @include('admin.templates.partials.alert')
-    <script>
-            //     $(function () {
+<script>
+        $(function () {
+            $('#dataTable').DataTable({
 
-            //             $('#dataTable').DataTable({
-            //                 processing: true,
-            //                 serverSide: true,
-            //                 ajax: '{{ route('katagori.data') }}',
-            //                 columns: [
-            //                     { data: 'DT_RowIndex', orderable: false, searchable : false},
-            //                     {data: 'nama', name: 'nama'},
-            //                     { data: 'action', name: 'action', orderable: false, searchable: false},
-            //                 ]
-            //             });
-            //     });
-
-                // create 
-                // $('#createNewKatagori').click(function () {
-                //     $('#saveBtn').val("create-katagori");
-                //     $('#id').val('');
-                //     $('#katagoriForm').trigger("reset");
-                //     $('#modelHeading').html("Tambah Data Katagori");
-                //     $('#ajaxModel').modal('show');
-                // });
-
-                 //createupdate
-                // $('#saveBtn').click(function (e) {
-                //     e.preventDefault();
-                //     $(this).html('Save');
-                //         $.ajax({
-                //             data: $('#katagoriForm').serialize(),
-                //             url: "{{ route('katagori.store') }}",
-                //             type: "POST",
-                //             dataType: 'json',
-                //             success: function (data) {
-                //                 $('#katagoriForm').trigger("reset");
-                //                 $('#ajaxModel').modal('hide');
-                //                 table.draw();
-                //             },
-                //             error: function (data) {
-                //                 console.log('Error:', data);
-                //                 $('#saveBtn').html('Save Changes');
-                //             }
-                //         });
-                // });
-
-
-                // edit
-                // $('body').on('click', '.edit', function () {
-                //     $('#katagori').val($(this).data('title'));
-                //     $('#katagori_id_edit').val($(this).data('id'));
-                //     $('#modHeading').html("Edit Data Katagori");
-                //     $('#ajaxModelEdit').modal('show');
-                //     return false;
-                // });
-                        
-
+            });
+        });
     </script>
 @endpush

@@ -59,4 +59,11 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('admin/assets/plugins/assets/js/material-dashboard.min.js?v=2.1.0') }}" type="text/javascript"></script>
 
+{{-- <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script>
+  $(document).ready(function () {
+     $('.rupiah').mask("#.##0", {reverse: true});
+  });
+  </script> --}}
 @stack('scripts')

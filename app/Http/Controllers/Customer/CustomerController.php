@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Customer;
+use App\Models\Produk;
 
 class CustomerController extends Controller
 {
@@ -16,8 +17,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
-        return view('customer.index');
+        $customerproduk = Produk::all();
+
+        return view('customer.dataproduk.index', compact('customerproduk'));
     }
 
     public function dataproduk()

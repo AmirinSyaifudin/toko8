@@ -47,6 +47,6 @@
 
   <link rel="{{ asset('admin/assets/plugins/stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons') }}" />
   <link rel="{{ asset('admin/assets/plugins/stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css') }}">
-
-
+<script src="{{ asset('admin/assets/https://cdn.jsdelivr.net/npm/autonumeric@4.6.0/dist/autoNumeric.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.6.0/dist/autoNumeric.min.js"></script>
 </head>

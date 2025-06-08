@@ -34,11 +34,11 @@ class SuppliyerController extends Controller
         return view('suppliyer.profil.profil');
     }
 
-    public function supliyerproduk()
-    {
+    // public function supliyerproduk()
+    // {
 
-        return view('suppliyer.dataproduk.index');
-    }
+    //     return view('suppliyer.dataproduk.index');
+    // }
 
     public function editprofil()
     {

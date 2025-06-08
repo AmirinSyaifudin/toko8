@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProdukController extends Controller
 {
@@ -14,9 +16,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        //
+        $adminproduk = Produk::all();
 
-        return view('admin.produk.index');
+        return view('admin.produk.index', compact('adminproduk'));
     }
 
     /**
