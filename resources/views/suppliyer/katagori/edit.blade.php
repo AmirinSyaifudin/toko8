@@ -5,13 +5,13 @@
             <h2 class="box-title">EDIT DATA KATAGORI</h2>
         </div>
             <div class="box-body">
-                <form action="{{ route('katagori.update', $katagori) }}" method="POST">
+                <form action="{{ route('suppliyerkatagori.update', $supkatagori->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method("PUT")
                     <div class="form-group @error('nama_katagori') has-error @enderror">
                          <label for="">NAMA KATAGORI</label>
                             <input type="text" name="nama_katagori" class="form-control" placeholder="Masukkan Nama Katagori"
-                            value="{{ old('nama_katagori') ?? $katagori->nama_katagori }}">
+                            value="{{ $supkatagori->nama_katagori }}">
                             @error('nama_katagori')
                                 <span class="help-block">{{ $message}}</span>
                             @enderror
@@ -19,7 +19,7 @@
                     <div class="form-group @error('keterangan') has-error @enderror">
                          <label for="">KETERANGAN</label>
                             <input type="text" name="keterangan" class="form-control" placeholder="Masukkan Nama Keterangan"
-                            value="{{ old('keterangan') ?? $katagori->keterangan }}">
+                            value="{{ $supkatagori->keterangan }}">
                             @error('keterangan')
                                 <span class="help-block">{{ $message}}</span>
                             @enderror

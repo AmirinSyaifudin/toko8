@@ -21,10 +21,9 @@ class KatagoriController extends Controller
      */
     public function index()
     {
-        return view('suppliyer.katagori.index', [
-            'title'         => 'Data Katagori',
-            'keterangan'    => 'Keterangan'
-         ]);
+        $supkatagori = Katagori::all();
+
+        return view('suppliyer.katagori.index', compact('supkatagori'));
     }
 
     /**
@@ -34,10 +33,7 @@ class KatagoriController extends Controller
      */
     public function create()
     {
-         return view('suppliyer.katagori.create', [
-            'title' => 'Tambah Data Katagori',
-            'keterangan'    => 'Keterangan'
-        ]);
+         return view('suppliyer.katagori.create');
     }
 
     /**
@@ -58,7 +54,7 @@ class KatagoriController extends Controller
             'keterangan'
         ));
 
-        return redirect()->route('katagori')
+        return redirect()->route('suppliyerkatagori')
         ->with('success','Data Katagori Berhasil di Tambahkan !!!');
       
     }
@@ -80,12 +76,11 @@ class KatagoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Katagori $katagori)
+    public function edit(Katagori $katagori, $id)
     {
-         return view('suppliyer.katagori.edit',[
-            'nama_katagori'  => 'Edit Data Katagori',
-            'keterangan'     => 'Edit Data Keterangan',
-            'katagori' => $katagori,]);
+        $supkatagori  = Katagori::findOrFail($id);
+
+         return view('suppliyer.katagori.edit', compact('supkatagori'));
     }
 
     /**
@@ -95,17 +90,19 @@ class KatagoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Katagori $katagori)
+    public function update(Request $request,  $id)
     {
         $this->validate($request,[
             'nama_katagori'  => 'required|min:3',
             'keterangan'     => 'required|min:3'
         ]);
 
-        $katagori->update($request->only('nama_katagori','keterangan'));
-
-        return redirect()->route('katagori')
-        ->with('info','Data Katagori Berhasil di Update !!!');
+        $data = $request->all();
+        $supkatagori = Katagori::findorfail($id);
+        $supkatagori->update($data);
+       
+        return redirect()->route('suppliyerkatagori')
+         ->with('info','Data Katagori Berhasil di Update !!!');
     }
 
     /**
@@ -114,12 +111,16 @@ class KatagoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Katagori $katagori)
+    public function destroy(Katagori $katagori, $id)
     {
-        $katagori->delete();
+        Katagori::findOrFail($id)->delete();
 
-        return redirect()->route('katagori')
+        return redirect()->back()
         ->with('danger','Data Katagori Berhasil di Hapus !!!');
+
+        // $katagori->delete();
+        // return redirect()->route('suppliyerkatagori')
+        // ->with('danger','Data Katagori Berhasil di Hapus !!!');
         
     }
 }

@@ -19,18 +19,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $suppliyerproduk = Produk::all();
-
+        $suppliyerproduk = Produk::with('katagori')->get();
+      
         return view('suppliyer.dataproduk.index', compact('suppliyerproduk'));
-        // return view('suppliyer.dataproduk.index',[
-        //     'kode'               =>'kode',
-        //     'nama'               =>'nama',
-        //     'harga_pembelian'    =>'harga_pembelian',
-        //     'harga_penjualan'    =>'harga_penjualan',
-        //     'stok'               =>'stok',
-        //     'unit'               =>'unit',
-        //     'keterangan'         =>'keterangan'
-        // ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -42,23 +33,13 @@ class ProdukController extends Controller
         // $tanggal  = Carbon::now();
         // $thnBulan = $now->year . $now->month;
         // $kodeBarang = Produk::generateKodeBarang();
-         $kodeBarang = Produk::generateKode();
-         $defaultHarga = 0;
-         $hargaFormatted = formatRupiah($defaultHarga);
+        //  $kodeBarang = Produk::generateKode();
+        //  $defaultHarga = 0;
+        //  $hargaFormatted = formatRupiah($defaultHarga);
          $katagori   = Katagori::all();
        
-        return view('suppliyer.dataproduk.create', compact('kodeBarang', 'katagori','hargaFormatted','defaultHarga'));
-        // return view('suppliyer.dataproduk.create',[
-        //     'kode'               =>'kode',
-        //     'nama'               =>'nama',
-        //     'foto'               =>'foto',
-        //     'harga_pembelian'    =>'harga_pembelian',
-        //     'harga_penjualan'    =>'harga_penjualan',
-        //     'stok'               =>'stok',
-        //     'unit'               =>'unit',
-        //     'keterangan'         =>'keterangan',
-        //     'katagori'           => Katagori::orderBy('nama_katagori','ASC')->get(),
-        // ]);
+        // return view('suppliyer.dataproduk.create', compact('katagori','hargaFormatted','defaultHarga'));
+         return view('suppliyer.dataproduk.create', compact('katagori'));
     }
 
     /**
@@ -88,7 +69,6 @@ class ProdukController extends Controller
         $produk->katagori_id    = $request->input('katagori_id');
         // $produk->harga_pembelian= $request->input('harga_pembelian');
         // $produk->harga_penjualan= $request->input('harga_penjualan');
-
         $produk->harga_pembelian= $harga;
         $produk->harga_penjualan= $harga;
         $produk->stok           = $request->input('stok');
@@ -190,19 +170,31 @@ class ProdukController extends Controller
         ->with('info',' Data Produk Berhasil Di Update !!!');
     }
 
+     public function detail($id)
+    {
+        $katagori = Katagori::all();
+        $produk  = Produk::findOrFail($id);
+        
+        return view('suppliyer.dataproduk.detail', compact('produk','katagori'));
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produk $produk,Request $request)
+    public function destroy(Produk $produk,Request $request, $id)
     {
-        $produk->delete();
-        //  Produk::where('katagori_id', $request->id)->delete();
+        Produk::findOrFail($id)->delete();
+
+        return redirect()->back();
+
+        // $produk->delete();
+        // //  Produk::where('katagori_id', $request->id)->delete();
          
-        return redirect()->route('suppliyerproduk')
-        ->with('danger','Data Katagori Berhasil di Hapus !!!');
+        // return redirect()->route('suppliyerproduk')
+        // ->with('danger','Data Katagori Berhasil di Hapus !!!');
         
     }
 }

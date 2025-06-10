@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/','FrontendController@homepage')->name('welcome');
 Route::get('frontendproduk','FrontendController@frontendproduk')->name('frontendproduk');
 Route::get('frontdetailproduk','FrontendController@frontdetailproduk')->name('frontdetailproduk');
+Route::get('katalogproduk/{id}','FrontendController@katalogproduk')->name('katalogproduk');
+// Route::get('katalogproduk','FrontendController@katalogproduk')->name('katalogproduk');
 Route::get('frontkontak','FrontendController@frontkontak')->name('frontkontak');
 // Route::get('login', function () {
 //     return view('auth.login');
@@ -63,13 +65,13 @@ Route::group(['middleware' => ['auth' => 'CheckRole:suppliyer']], function () {
         Route::get('editprofil/{id}', 'SuppliyerController@edit')->name('editprofil');
         Route::put('update/{id}', 'SuppliyerController@update')->name('update');
 
-        Route::get('katagori', 'KatagoriController@index')->name('katagori');
-        Route::get('katagori/data', 'DataController@katagori')->name('katagori.data');
-        Route::get('/katagori/create', 'KatagoriController@create')->name('katagori.create');
-        Route::post('/katagori', 'KatagoriController@store')->name('katagori.store');
-        Route::get('/katagori/{katagori}/edit', 'KatagoriController@edit')->name('katagori.edit');
-        Route::put('/katagori/{katagori}','KatagoriController@update')->name('katagori.update');
-        Route::delete('/katagori/{katagori}','KatagoriController@destroy')->name('katagori.destroy');
+        Route::get('suppliyerkatagori', 'KatagoriController@index')->name('suppliyerkatagori');
+        Route::get('suppliyerkatagori/data', 'DataController@katagori')->name('suppliyerkatagori.data');
+        Route::get('/suppliyerkatagori/create', 'KatagoriController@create')->name('suppliyerkatagori.create');
+        Route::post('/suppliyerkatagori', 'KatagoriController@store')->name('suppliyerkatagori.store');
+        Route::get('/suppliyerkatagori/{suppliyerkatagori}/edit', 'KatagoriController@edit')->name('suppliyerkatagori.edit');
+        Route::put('/suppliyerkatagori/{suppliyerkatagori}','KatagoriController@update')->name('suppliyerkatagori.update');
+        Route::delete('/supkatagori/{supkatagori}','KatagoriController@destroy')->name('supkatagori.destroy');
 
         // PRODUK
         // Route::get('suppliyerproduk', 'SuppliyerController@supliyerproduk')->name('suppliyerproduk');
@@ -79,8 +81,8 @@ Route::group(['middleware' => ['auth' => 'CheckRole:suppliyer']], function () {
         Route::post('/suppliyerproduk', 'ProdukController@store')->name('suppliyerproduk.store');
         Route::get('/suppliyerproduk/{suppliyerproduk}/edit', 'ProdukController@edit')->name('suppliyerproduk.edit');
         Route::put('/suppliyerproduk','ProdukController@update')->name('suppliyerproduk.update');
-        Route::delete('/produk/{produk}','ProdukController@destroy')->name('produk.destroy');
-
+        Route::delete('/suppliyerproduk/{suppliyerproduk}','ProdukController@destroy')->name('suppliyerproduk.destroy');
+        Route::get('/suppliyerproduk/{suppliyerproduk}/detail', 'ProdukController@detail')->name('suppliyerproduk.detail');
     });
 });
 

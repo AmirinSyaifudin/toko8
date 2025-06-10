@@ -1,5 +1,5 @@
-<a href="{{ route('katagori.edit', $model) }}" class="btn btn-warning">Edit</a>
-<button href="{{ route('katagori.destroy', $model) }}" onclick="md.showNotification('top','right')" class="btn btn-danger" id="delete">Hapus</button>
+<a href="{{ route('supkatagori.edit', $model) }}" class="btn btn-warning">Edit</a>
+<button href="{{ route('supkatagori.destroy', $model) }}" onclick="md.showNotification('top','right')" class="btn btn-danger" id="delete">Hapus</button>
 
 {{-- CDN SweateAlert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>

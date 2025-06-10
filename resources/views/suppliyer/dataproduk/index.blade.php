@@ -15,14 +15,14 @@
                                 <tr class="text-center">
                                     <th style="text-align: center">ID</th>
                                     <th style="text-align: center">FOTO</th>
-                                    {{-- <th style="text-align: center">KATAGORI</th> --}}
+                                    <th style="text-align: center">KATAGORI</th>
                                     <th style="text-align: center">KODE</th>
                                     <th style="text-align: center">NAMA</th>
                                     <th style="text-align: center">HARGA PEMBELIAN </th>
                                     <th style="text-align: center">HARGA PENJUALAN</th>
-                                    <th style="text-align: center">STOK</th>
-                                    <th style="text-align: center">UNIT</th>
-                                    <th style="text-align: center">KETERANGAN</th>
+                                    <th style="text-align: center">QUANTITY</th>
+                                    {{-- <th style="text-align: center">UNIT</th> --}}
+                                    {{-- <th style="text-align: center">KETERANGAN</th> --}}
                                     <th style="text-align: center" width="180px"></th>
                                     <th style="text-align: center" width="180px"></th>
                                     <th style="text-align: center" width="180px"></th>
@@ -33,18 +33,18 @@
                                     <tr> 
                                         <td width='5'>  {{ $loop-> index +1 }} </td>
                                         <td width='50'><img class="img-responsive" src="{{ url ('/admin/assets/covers/'. $sp->foto) }}"> </td>
-                                        {{-- <td width='20'> {{ $sp->kode }}</td> --}}
-                                         <td scope="row"> {{ generateKode($sp->kode)}} </td>
+                                        <td width='20'> {{ $sp->katagori->nama_katagori }}</td>
+                                        <td scope="row"> {{ $sp->kode }} </td>
                                         <td width='20'> {{ $sp->nama }}</td>
                                         <td scope="row"> {{"Rp. ".formatRupiah($sp->harga_pembelian)}} </td>
                                         <td scope="row"> {{"Rp. ".formatRupiah($sp->harga_penjualan)}} </td>
                                         <td width='20'> {{ $sp->stok }}</td>
-                                        <td width='20'> {{ $sp->unit }}</td>
-                                        <td width='20'> {{ $sp->keterangan }}</td>
-                                        <td width='5'><a href="" class="btn btn-info">DETAIL</a></td>
-                                        <td width='5'><a href="" class="btn btn-warning">EDIT</a></td>
+                                        {{-- <td width='20'> {{ $sp->unit }}</td> --}}
+                                        {{-- <td width='20'> {{ $sp->keterangan }}</td> --}}
+                                        <td width='5'><a href="{{ route('suppliyerproduk.detail', $sp->id) }}" class="btn btn-info">DETAIL</a></td>
+                                        <td width='5'><a href="{{ route('suppliyerproduk.edit', $sp->id) }}" class="btn btn-warning">EDIT</a></td>
                                         <td width='5'>
-                                            <form action="" method="post" style="display:inline;">
+                                            <form action="{{ route('suppliyerproduk.destroy', $sp->id) }}" method="post" style="display:inline;">
                                                 {{ csrf_field() }}
                                                 {{ method_field ('delete')}}
                                                 <button type="submit"  class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data?')">DELETE</button>

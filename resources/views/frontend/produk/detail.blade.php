@@ -1,8 +1,5 @@
 @extends('frontend.templates.default')
-
 @section('content')
-   
-	
 	<section>
 		<div class="container">
 			<div class="row">
@@ -13,13 +10,12 @@
 							@forelse ($katagori as $kt)
 							    	<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="#">{{ $kt->nama_katagori}}</a></h4>
+										<h4 class="panel-title"><a href="{{ route('katalogproduk') }}">{{ $kt->nama_katagori}}</a></h4>
 									</div>
 								</div>
 							@empty
 							@endforelse
 						</div>
-						
 					</div>
 				</div>
 				<div class="col-sm-9 padding-right">
@@ -30,7 +26,6 @@
 								<h3>ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
 								  <!-- Wrapper for slides -->
 								    <div class="carousel-inner">
 										<div class="item active left">
@@ -47,10 +42,8 @@
 										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
 										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
 										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										
+										</div>	
 									</div>
-
 								  <!-- Controls -->
 								  <a class="left item-control" href="#similar-product" data-slide="prev">
 									<i class="fa fa-angle-left"></i>
@@ -59,7 +52,6 @@
 									<i class="fa fa-angle-right"></i>
 								  </a>
 							</div>
-
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
@@ -83,14 +75,9 @@
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
-					
-					
-					
 					<div class="recommended_items"><!--recommended_items-->
 						<h2 class="title text-center">-----</h2>
-						
 					</div><!--/recommended_items-->
-					
 				</div>
 			</div>
 		</div>

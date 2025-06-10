@@ -5,7 +5,7 @@
             <h2 class="box-title">ADDA KATAGORI</h2>
         </div>
             <div class="box-body">
-                <form action="{{ route('katagori.store') }}" method="POST">
+                <form action="{{ route('suppliyerkatagori.store') }}" method="POST">
                 @csrf
                     <div class="form-group @error('nama_katagori') has-error @enderror">
                         <label for="">NAMA</label>

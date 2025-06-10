@@ -6,7 +6,7 @@
           <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">DATA KATAGORI</h3><br><br>
-                    <a href="{{ route('katagori.create')}}" class="btn btn-primary" >ADD Katagori</a>
+                    <a href="{{ route('suppliyerkatagori.create')}}" class="btn btn-primary" >ADD Katagori</a>
                 </div>
                <div class="box-body table-responsive">
                     <table id="dataTable" class="table table-bordered table-hover">
@@ -15,17 +15,37 @@
                                     <th style="text-align: center">ID</th>
                                     <th style="text-align: center">NAMA Katagori</th>
                                     <th style="text-align: center">KETERANGAN</th>
-                                    <th style="text-align: center" width="180px">ACTION</th>
+                                    <th style="text-align: center" width="180px"></th>
+                                    <th style="text-align: center" width="180px"></th>
                                 </tr>
                             </thead>
+                        <tbody>
+                            @forelse ($supkatagori as $item)
+                                    <tr>
+                                        <td width='5'>  {{ $loop-> index +1 }} </td>
+                                        <td scope="row"> {{ $item->nama_katagori }} </td>
+                                        <td width='20'> {{ $item->keterangan }}</td>
+                                        <td width='5'><a href=" {{ route('suppliyerkatagori.edit', $item->id) }}" class="btn btn-warning">EDIT</a></td>
+                                        <td width='5'>
+                                            <form action="{{ route('supkatagori.destroy', $item->id) }}" method="post" style="display:inline;">
+                                                {{ csrf_field() }}
+                                                {{ method_field ('delete')}}
+                                                <button type="submit"  class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data?')">DELETE</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                            @empty
+                                
+                            @endforelse
+                        </tbody>
                     </table>
                 </div>
             </div>
-            <form action="" method="post" id="deleteForm">
+            {{-- <form action="" method="post" id="deleteForm">
                 @csrf
                 @method("DELETE")
                 <input type="submit" value="Hapus"  style="display: none">
-            </form>
+            </form> --}}
 
 {{-- create ajax --}}
 {{-- <div class="modal fade" id="ajaxModel" aria-hidden="true">
@@ -113,26 +133,26 @@
 <script src="{{ asset('admin/assets/plugins/bs.notify.min.js') }}"></script>
  @include('admin.templates.partials.alert')
     <script>
-                $(function () {
+                // $(function () {
 
-                    //    $.ajaxSetup({
-                    //     headers: {
-                    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    //     }
-                    //     });
+                //        $.ajaxSetup({
+                //         headers: {
+                //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                //         }
+                //         });
 
-                        $('#dataTable').DataTable({
-                            processing: true,
-                            serverSide: true,
-                            ajax: '{{ route('katagori.data') }}',
-                            columns: [
-                                { data: 'DT_RowIndex', orderable: false, searchable : false},
-                                {data: 'nama_katagori', name: 'nama_katagori'},
-                                {data: 'keterangan', name: 'keterangan'},
-                                { data: 'action', name: 'action', orderable: false, searchable: false},
-                            ]
-                        });
-                });
+                //         $('#dataTable').DataTable({
+                //             processing: true,
+                //             serverSide: true,
+                //             ajax: '{{ route('suppliyerkatagori.data') }}',
+                //             columns: [
+                //                 { data: 'DT_RowIndex', orderable: false, searchable : false},
+                //                 {data: 'nama_katagori', name: 'nama_katagori'},
+                //                 {data: 'keterangan', name: 'keterangan'},
+                //                 { data: 'action', name: 'action', orderable: false, searchable: false},
+                //             ]
+                //         });
+                // });
 
                 // create 
                 // $('#createNewKatagori').click(function () {

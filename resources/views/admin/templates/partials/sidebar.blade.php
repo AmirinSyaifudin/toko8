@@ -177,7 +177,7 @@
           </a>
         </li>
         <li class="accordion-group @if (Request::segment(1) == 'katagorisuppliyer') active @endif">
-          <a href="{{ route('katagori') }}">
+          <a href="{{ route('suppliyerkatagori') }}">
             <i class="fa fa-calendar"></i> <span>DATA KATAGORI</span>
             <span class="pull-right-container">
             </span>
