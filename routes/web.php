@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/','FrontendController@homepage')->name('welcome');
 Route::get('frontendproduk','FrontendController@frontendproduk')->name('frontendproduk');
-Route::get('frontdetailproduk','FrontendController@frontdetailproduk')->name('frontdetailproduk');
+Route::get('frontdetailproduk/{id}','FrontendController@frontdetailproduk')->name('frontdetailproduk');
 Route::get('katalogproduk/{id}','FrontendController@katalogproduk')->name('katalogproduk');
 // Route::get('katalogproduk','FrontendController@katalogproduk')->name('katalogproduk');
 Route::get('frontkontak','FrontendController@frontkontak')->name('frontkontak');
@@ -69,8 +69,8 @@ Route::group(['middleware' => ['auth' => 'CheckRole:suppliyer']], function () {
         Route::get('suppliyerkatagori/data', 'DataController@katagori')->name('suppliyerkatagori.data');
         Route::get('/suppliyerkatagori/create', 'KatagoriController@create')->name('suppliyerkatagori.create');
         Route::post('/suppliyerkatagori', 'KatagoriController@store')->name('suppliyerkatagori.store');
-        Route::get('/suppliyerkatagori/{suppliyerkatagori}/edit', 'KatagoriController@edit')->name('suppliyerkatagori.edit');
-        Route::put('/suppliyerkatagori/{suppliyerkatagori}','KatagoriController@update')->name('suppliyerkatagori.update');
+        Route::get('/suppliyerkatagori/{id}', 'KatagoriController@edit')->name('suppliyerkatagori.edit');
+        Route::put('/suppliyerkatagori/{id}','KatagoriController@update')->name('suppliyerkatagori.update');
         Route::delete('/supkatagori/{supkatagori}','KatagoriController@destroy')->name('supkatagori.destroy');
 
         // PRODUK
@@ -79,8 +79,8 @@ Route::group(['middleware' => ['auth' => 'CheckRole:suppliyer']], function () {
         Route::get('suppliyerproduk/data', 'DataController@produk')->name('suppliyerproduk.data');
         Route::get('/suppliyerproduk/create', 'ProdukController@create')->name('suppliyerproduk.create');
         Route::post('/suppliyerproduk', 'ProdukController@store')->name('suppliyerproduk.store');
-        Route::get('/suppliyerproduk/{suppliyerproduk}/edit', 'ProdukController@edit')->name('suppliyerproduk.edit');
-        Route::put('/suppliyerproduk','ProdukController@update')->name('suppliyerproduk.update');
+        Route::get('/suppliyerproduk/{id}', 'ProdukController@edit')->name('suppliyerproduk.edit');
+        Route::put('/suppliyerproduk/{id}','ProdukController@update')->name('suppliyerproduk.update');
         Route::delete('/suppliyerproduk/{suppliyerproduk}','ProdukController@destroy')->name('suppliyerproduk.destroy');
         Route::get('/suppliyerproduk/{suppliyerproduk}/detail', 'ProdukController@detail')->name('suppliyerproduk.detail');
     });

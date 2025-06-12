@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Suppliyer;
 use App\Http\Controllers\Controller;
 use App\Models\Katagori;
 use App\Models\Produk;
+use App\Models\Suppliyer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DataTables;
@@ -19,7 +20,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $suppliyerproduk = Produk::with('katagori')->get();
+        $suppliyerproduk = Produk::where('user_id', auth()->user()->id)
+                                ->orderBy('created_at','desc')
+                                ->get();
       
         return view('suppliyer.dataproduk.index', compact('suppliyerproduk'));
     }
@@ -30,16 +33,10 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        // $tanggal  = Carbon::now();
-        // $thnBulan = $now->year . $now->month;
-        // $kodeBarang = Produk::generateKodeBarang();
-        //  $kodeBarang = Produk::generateKode();
-        //  $defaultHarga = 0;
-        //  $hargaFormatted = formatRupiah($defaultHarga);
-         $katagori   = Katagori::all();
+        $katagori   = Katagori::all();
+        $supplier  = Suppliyer::where('user_id', auth()->user()->id)->first();
        
-        // return view('suppliyer.dataproduk.create', compact('katagori','hargaFormatted','defaultHarga'));
-         return view('suppliyer.dataproduk.create', compact('katagori'));
+         return view('suppliyer.dataproduk.create', compact('katagori','supplier'));
     }
 
     /**
@@ -50,27 +47,27 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'kode'              => 'required|min:3',
-        //     'nama'              => 'required|min:3',
-        //     'harga_pembelian'   => 'required|min:3',
-        //     'harga_penjualan'   => 'required|min:3',
-        //     'stok'              => 'required|min:3',
-        //     'unit'              => 'required|min:3',
-        //     'keterangan'        => 'required|min:3'
+        //    $request->validate([
+        //     'katagori_id'       => 'required',
+        //     'supplier_id'       => 'required',
+        //     'user_id'           => 'require',
+        //     'suppliyer_id'      => 'required',
+        //     'kode_barang'       => 'required',
+        //     'nama'              => 'require',
+        //     'harga_penjualan'   => 'required',
+        //     'harga_pembelian'   => 'required',
+        //     'stok'              => 'required',
+        //     'keterangan'        => 'required'
         // ]);
-    // Konversi dari format Rupiah ke angka
-        $harga = str_replace(['Rp', '.', ' '], '', $request->harga);
-        $harga = (int)$harga;
 
         $produk                 = new Produk;
-        $produk->kode           = $request->input('kode');
+        $produk->user_id        = $request->input('user_id');
+        $produk->supplier_id   = $request->input('supplier_id');
+        $produk->kode_barang    = $request->input('kode_barang');
         $produk->nama           = $request->input('nama');
         $produk->katagori_id    = $request->input('katagori_id');
-        // $produk->harga_pembelian= $request->input('harga_pembelian');
-        // $produk->harga_penjualan= $request->input('harga_penjualan');
-        $produk->harga_pembelian= $harga;
-        $produk->harga_penjualan= $harga;
+        $produk->harga_pembelian= $request->input('harga_pembelian');
+        $produk->harga_penjualan= $request->input('harga_penjualan');
         $produk->stok           = $request->input('stok');
         $produk->unit           = $request->input('unit');
         $produk->keterangan     = $request->input('keterangan');
@@ -109,9 +106,12 @@ class ProdukController extends Controller
      */
      public function edit($id)
     {
-        $katagori = Katagori::all();
-        $produk  = Produk::findOrFail($id);
-        return view('suppliyer.dataproduk.edit', compact('produk','katagori'));
+        $katagori  = Katagori::all();
+        $produk    = Produk::findOrFail($id);
+        $supplier  = Suppliyer::where('user_id', auth()->user()->id)->first();
+        // dd($supplier,$produk);
+
+        return view('suppliyer.dataproduk.edit', compact('produk','katagori','supplier'));
     }
 
     /**
@@ -121,61 +121,69 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produk $produk)
+    public function update(Request $request, $id)
     {
-        // $this->validate($request,[
-        //     'kode'              => 'required|min:3',
-        //     'nama'              => 'required|min:3',
-        //     'harga_penjualan'   => 'required|min:3',
-        //     'harga_pembelian'   => 'required|min:3',
-        //     'stok'              => 'required|min:3',
-        //     'unit'              => 'required|min:3',
-        //     'keterangan'        => 'required|min:3'
+        // $request->validate([
+        //     'user_id'    => 'require',
+        //     'foto'       => 'image|nullable|max:300',
         // ]);
 
-        $filename = '';
-        if ($request->hasFile('foto')) {
-            $file  = $request->file('foto');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('admin/assets/covers/', $filename);
+        $data    = Produk::findOrFail($id);
 
-            
-        }
+            if ($request->hasFile('foto')) {
+                //upliad new foto
+                $image = $request->file('foto');
+                $new_foto = time() . 'foto' . $image->getClientOriginalName();
+                $tujuan_uploud = 'admin/assets/covers/';
+                $image->move($tujuan_uploud, $new_foto);
 
-        DB::table('produk')
-            ->where('katagori_id', $request->id)
-            ->update([
-                'kode'            => $request->kode,
-                'nama'            => $request->nama,
-                'katagori_id'     => $request->katagori_id,
-                'harga_pembelian' => $request->harga_pembelian,
-                'harga_penjualan' => $request->harga_penjualan,
-                'stok'            => $request->stok,
-                'unit'            => $request->unit,
-                'keterangan'      => $request->keterangan,
-            ]);
+                // delete old foto local
+                if (file_exists(($data->logo))) {
+                    unlink(($data->logo));
+                }
 
-        // $produk->update($request->only(
-        //     'nama',
-        //     'kode',
-        //     'harga_pembelian',
-        //     'harga_penjualan',
-        //     'stok',
-        //     'unit',
-        //     'keterangan'
-        // ));
-        
+                //update with new foto
+                $data->update([
+                        'foto'              => $tujuan_uploud, $new_foto,
+                        'user_id'           => $request->user_id,
+                        'nama'              => $request->nama,
+                        'kode_barang'       => $request->kode_barang,
+                        'harga_pembelian'   => $request->harga_pembelian,
+                        'harga_penjualan'   => $request->harga_penjualan,
+                        'stok'              => $request->stok,
+                ]);
+            } else {
+                $data->update([
+                        'user_id'           => $request->user_id,
+                        'nama'              => $request->nama,
+                        'kode_barang'       => $request->kode_barang,
+                        'harga_pembelian'   => $request->harga_pembelian,
+                        'harga_penjualan'   => $request->harga_penjualan,
+                        'stok'              => $request->stok,
+                ]);
+            }
+
         return redirect()->route('suppliyerproduk')
-        ->with('info',' Data Produk Berhasil Di Update !!!');
+                        ->with('info',' Data Produk Berhasil Di Update !!!');
     }
 
      public function detail($id)
     {
-        $katagori = Katagori::all();
-        $produk  = Produk::findOrFail($id);
-        
-        return view('suppliyer.dataproduk.detail', compact('produk','katagori'));
+         $produk = DB::table('produk')
+            ->where('produk_id', $id)
+            ->first();
+        $katagori = DB::table('katagori')
+            ->get();
+        //  dd($produk);
+        $data = array(
+            'produk'        => $produk,
+            'katagori'      => $katagori
+        );
+
+        // $katagori = Katagori::all();
+        // $produk  = Produk::findOrFail($id);
+        // return view('suppliyer.dataproduk.detail', compact('produk','katagori'));
+        return view('suppliyer.dataproduk.detail', compact('data'));
     }
     
     /**
@@ -198,6 +206,55 @@ class ProdukController extends Controller
         
     }
 }
+
+// public function update(Request $request, $id)
+//     {
+//         // $request->validate([
+//         //     'user_id'           => 'require',
+//         //      'foto' => 'image|nullable|max:300',
+//         // ]);
+
+//         // $filename = '';
+//         // if ($request->hasFile('foto')) {
+//         //     $file  = $request->file('foto');
+//         //     $extension = $file->getClientOriginalExtension();
+//         //     $filename = time() . '.' . $extension;
+//         //     $file->move('admin/assets/covers/', $filename);
+//         // }
+
+//         $produk  = $request->all();
+//         $data    = Produk::findOrFail($id);
+//         $data->update($produk);
+
+//         return redirect()->route('suppliyerproduk')
+//                         ->with('info',' Data Produk Berhasil Di Update !!!');
+//     }
+
+
+ // DB::table('produk')
+        //     ->where('katagori_id', $request->id)
+        //     ->where('user_id', $request->id)
+        //     ->where('supplier_id', $request->id)
+        //     ->update([
+        //         'kode_barang'     => $request->kode_barang,
+        //         'nama'            => $request->nama,
+        //         'katagori_id'     => $request->katagori_id,
+        //         'user_id'         => $request->user_id,
+        //         'supplier_id'     => $request->supplier_id,
+        //         'harga_pembelian' => $request->harga_pembelian,
+        //         'harga_penjualan' => $request->harga_penjualan,
+        //         'stok'            => $request->stok,
+        //         'keterangan'      => $request->keterangan,
+        //     ]);
+
+
+ // $tanggal  = Carbon::now();
+        // $thnBulan = $now->year . $now->month;
+        // $kodeBarang = Produk::generateKodeBarang();
+        //  $kodeBarang = Produk::generateKode();
+        //  $defaultHarga = 0;
+        //  $hargaFormatted = formatRupiah($defaultHarga);
+
 
  // public function index(Request $request)
     // {        

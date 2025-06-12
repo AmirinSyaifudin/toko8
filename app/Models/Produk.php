@@ -37,6 +37,11 @@ class Produk extends Model
         return $this->belongsTo(Suppliyer::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getFoto()
     {
         if (substr($this->foto, 0, 5) == "https") {

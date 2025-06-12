@@ -18,4 +18,5 @@ class Katagori extends Model
     {
         return $this->hasMany(Produk::class);
     }
+
 }

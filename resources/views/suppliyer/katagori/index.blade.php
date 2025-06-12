@@ -132,68 +132,75 @@
 @push('scripts')
 <script src="{{ asset('admin/assets/plugins/bs.notify.min.js') }}"></script>
  @include('admin.templates.partials.alert')
-    <script>
-                // $(function () {
+ <script>
+        $(function () {
+            $('#dataTable').DataTable({
 
-                //        $.ajaxSetup({
-                //         headers: {
-                //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //         }
-                //         });
+            });
+        });
+</script>
+<script>
+            // $(function () {
 
-                //         $('#dataTable').DataTable({
-                //             processing: true,
-                //             serverSide: true,
-                //             ajax: '{{ route('suppliyerkatagori.data') }}',
-                //             columns: [
-                //                 { data: 'DT_RowIndex', orderable: false, searchable : false},
-                //                 {data: 'nama_katagori', name: 'nama_katagori'},
-                //                 {data: 'keterangan', name: 'keterangan'},
-                //                 { data: 'action', name: 'action', orderable: false, searchable: false},
-                //             ]
-                //         });
-                // });
+            //        $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //         });
 
-                // create 
-                // $('#createNewKatagori').click(function () {
-                //     $('#saveBtn').val("create-katagori");
-                //     $('#id').val('');
-                //     $('#katagoriForm').trigger("reset");
-                //     $('#modelHeading').html("Tambah Data Katagori");
-                //     $('#ajaxModel').modal('show');
-                // });
+            //         $('#dataTable').DataTable({
+            //             processing: true,
+            //             serverSide: true,
+            //             ajax: '{{ route('suppliyerkatagori.data') }}',
+            //             columns: [
+            //                 { data: 'DT_RowIndex', orderable: false, searchable : false},
+            //                 {data: 'nama_katagori', name: 'nama_katagori'},
+            //                 {data: 'keterangan', name: 'keterangan'},
+            //                 { data: 'action', name: 'action', orderable: false, searchable: false},
+            //             ]
+            //         });
+            // });
 
-                 //createupdate
-                // $('#saveBtn').click(function (e) {
-                //     e.preventDefault();
-                //     $(this).html('Save');
-                //         $.ajax({
-                //             data: $('#katagoriForm').serialize(),
-                //             url: "{{ route('katagori.store') }}",
-                //             type: "POST",
-                //             dataType: 'json',
-                //             success: function (data) {
-                //                 $('#katagoriForm').trigger("reset");
-                //                 $('#ajaxModel').modal('hide');
-                //                 table.draw();
-                //             },
-                //             error: function (data) {
-                //                 console.log('Error:', data);
-                //                 $('#saveBtn').html('Save Changes');
-                //             }
-                //         });
-                // });
+            // create 
+            // $('#createNewKatagori').click(function () {
+            //     $('#saveBtn').val("create-katagori");
+            //     $('#id').val('');
+            //     $('#katagoriForm').trigger("reset");
+            //     $('#modelHeading').html("Tambah Data Katagori");
+            //     $('#ajaxModel').modal('show');
+            // });
+
+                //createupdate
+            // $('#saveBtn').click(function (e) {
+            //     e.preventDefault();
+            //     $(this).html('Save');
+            //         $.ajax({
+            //             data: $('#katagoriForm').serialize(),
+            //             url: "{{ route('katagori.store') }}",
+            //             type: "POST",
+            //             dataType: 'json',
+            //             success: function (data) {
+            //                 $('#katagoriForm').trigger("reset");
+            //                 $('#ajaxModel').modal('hide');
+            //                 table.draw();
+            //             },
+            //             error: function (data) {
+            //                 console.log('Error:', data);
+            //                 $('#saveBtn').html('Save Changes');
+            //             }
+            //         });
+            // });
 
 
-                // edit
-                // $('body').on('click', '.edit', function () {
-                //     $('#katagori').val($(this).data('title'));
-                //     $('#katagori_id_edit').val($(this).data('id'));
-                //     $('#modHeading').html("Edit Data Katagori");
-                //     $('#ajaxModelEdit').modal('show');
-                //     return false;
-                // });
-                        
+            // edit
+            // $('body').on('click', '.edit', function () {
+            //     $('#katagori').val($(this).data('title'));
+            //     $('#katagori_id_edit').val($(this).data('id'));
+            //     $('#modHeading').html("Edit Data Katagori");
+            //     $('#ajaxModelEdit').modal('show');
+            //     return false;
+            // });
+                    
 
-    </script>
+</script>
 @endpush

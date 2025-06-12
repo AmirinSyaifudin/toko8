@@ -16,12 +16,16 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('katagori_id')->constrained('katagori')->onUpdate('cascade')->onDelete('cascade');
+             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('kode')->unique();
             $table->string('nama');
             $table->string('foto')->nullable();
-            $table->decimal('harga_pembelian',12 ,2);
-            $table->decimal('harga_penjualan', 12, 2);
+            $table->string('fotosatu')->nullable();
+            $table->string('fotodua')->nullable();
+            $table->string('fototiga')->nullable();
+            $table->integer('harga_pembelian');
+            $table->integer('harga_penjualan');
             $table->integer('stok');
             $table->string('unit')->nullable();
             $table->text('keterangan');

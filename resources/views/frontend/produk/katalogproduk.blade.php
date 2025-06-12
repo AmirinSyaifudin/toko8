@@ -10,7 +10,7 @@
 							@forelse ($katagori as $kt)
 							    	<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="{{ route('katalogproduk') }}">{{ $kt->nama_katagori}}</a></h4>
+										<h4 class="panel-title"><a href="{{ route('katalogproduk', $kt->id) }}">{{ $kt->nama_katagori}}</a></h4>
 									</div>
 								</div>
 							@empty
@@ -28,13 +28,14 @@
 					<div class="features_items">
                                     <!--features_items-->
 						<h2 class="title text-center">DAFTAR PRODUK</h2>
-						{{-- @forelse ($produk as $pd)
+						@forelse ($produk as $pd)
 						    <div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ url ('/admin/assets/covers/'. $pd->foto) }}" alt="" />
-										<h2>Rp. {{ $pd->harga_penjualan }}</h2>
+										{{-- <h2>Rp. {{ $pd->harga_penjualan }}</h2> --}}
+										 <h2>Rp {{ number_format($pd->harga_penjualan, 0, ',', '.') }}</h2>
 										<p>{{ $pd->nama }}</p>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Masukkan Keranjang</a>
 									</div>
@@ -55,7 +56,7 @@
 							</div>
 						</div>
 						@empty
-						@endforelse --}}
+						@endforelse
 					</div><!--features_items-->
                               
 					<div class="recommended_items"><!--recommended_items-->

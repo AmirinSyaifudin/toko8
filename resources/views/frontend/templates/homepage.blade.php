@@ -70,7 +70,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>KATAGORssI</h2>
+						<h2>KATAGORI</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							@forelse ($katagori as $kt)
 							    	<div class="panel panel-default">
@@ -98,7 +98,8 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ url ('/admin/assets/covers/'. $pd->foto) }}" alt="" />
-										<h2>Rp. {{ $pd->harga_penjualan }}</h2>
+										{{-- <h2>Rp. {{ $pd->harga_penjualan }}</h2> --}}
+										 <h2>Rp {{ number_format($pd->harga_penjualan, 0, ',', '.') }}</h2>
 										<p>{{ $pd->nama }}</p>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Masukkan Keranjang</a>
 									</div>
@@ -112,7 +113,7 @@
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="{{ route ('frontdetailproduk') }}"><i class="fa fa-plus-square"></i>Detail Produk</a></li>
+										<li><a href="{{ route ('frontdetailproduk', $pd->id) }}"><i class="fa fa-plus-square"></i>Detail Produk</a></li>
 										{{-- <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li> --}}
 									</ul>
 								</div>
@@ -216,6 +217,9 @@
 							  </a>			
 						</div> --}}
 					</div><!--/recommended_items-->
+					 
+					{{ $produk->links() }} 
+
 				</div>
 			</div>
 		</div>

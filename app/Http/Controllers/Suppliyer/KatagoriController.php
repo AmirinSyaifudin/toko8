@@ -102,7 +102,7 @@ class KatagoriController extends Controller
         $supkatagori->update($data);
        
         return redirect()->route('suppliyerkatagori')
-         ->with('info','Data Katagori Berhasil di Update !!!');
+                          ->with('info','Data Katagori Berhasil di Update !!!');
     }
 
     /**

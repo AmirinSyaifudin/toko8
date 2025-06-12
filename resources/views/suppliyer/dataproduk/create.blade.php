@@ -8,25 +8,11 @@
 
             <div class="box-body">
                 <form action="{{ route('suppliyerproduk.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                   {{-- @if ($suppliyer != null)
-                    <input type="hidden" name="suppliyer_id" value="{{ $suppliyer->id }}">
-                  @endif --}}
-                 {{-- <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> --}}
-                    {{-- <div class="form-group @error('foto') has-error @enderror">
-                        <label for="">FOTO</label>
-                        <input type="file" name="foto" class="form-control"  
-                        value="{{ old('foto') }}" required> 
-                        @error('foto')
-                            <span class="help-block">{{ $message}}</span>
-                        @enderror
-                    </div> --}}
-                    {{-- <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">FOTO</label>
-                            <div class="col-sm-5">
-                                <input type="file" name="image" class="form-control" required>
-                            </div>
-                    </div> --}}
+                {{ csrf_field() }}
+                    @if ($supplier != null)
+                        <input type="hidden" name="supplier_id" value="{{ $supplier->id }}">
+                    @endif
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="form-group @error('foto') has-error @enderror">
                         <label for="">FOTO</label>
                         <input type="file" name="foto" class="form-control">
@@ -34,10 +20,8 @@
                             <span class="help-block">{{ $message}}</span>
                         @enderror
                     </div>
-
                     <div class="form-group @error('katagori') has-error @enderror">
                         <label for="">KATAGORI PRODUK</label>
-
                         <select name="katagori_id" id="" class="form-control select2">
                             @foreach ($katagori as $kt)
                                     <option value="{{ $kt->id}}">{{ $kt->nama_katagori}}</option>
@@ -47,10 +31,17 @@
                             <span class="help-block">{{ $message}}</span>
                         @enderror
                     </div>
-                    <div class="form-group @error('kode') has-error @enderror">
+                    {{-- <div class="form-group @error('kode') has-error @enderror">
                         <label for="">KODE PRODUK</label>
                         <input type="text" name="kode" class="form-control" placeholder="Masukkan kode Produk" value="{{ old('kode') }}" > 
                         @error('kode')
+                            <span class="help-block">{{ $message}}</span>
+                        @enderror
+                    </div> --}}
+                    <div class="form-group @error('kode_barang') has-error @enderror">
+                        <label for="">KODE PRODUK</label>
+                        <input type="text" name="kode_barang" class="form-control" placeholder="Masukkan kode Produk" value="{{ old('kode_barang') }}"> 
+                        @error('kode_barang')
                             <span class="help-block">{{ $message}}</span>
                         @enderror
                     </div>
@@ -61,28 +52,16 @@
                             <span class="help-block">{{ $message}}</span>
                         @enderror
                     </div>
-                    
                     <div class="form-group @error('harga_pembelian') has-error @enderror">
                         <label for="">HARGA PEMBELIAN</label>
-                         {{-- <input type="text" 
-                            name="harga_pembelian" 
-                            id="harga"
-                            class="form-control rupiah"
-                             value="{{ $hargaFormatted }}"
-                            oninput="formatCurrency(this)"> --}}
-
-                         <input type="text" name="harga_pembelian" class="form-control rupiah" placeholder="Rp" value="{{ old('harga_pembelian') }}"> 
+                        <input type="number" name="harga_pembelian" class="form-control" placeholder="Masukkan harga pembelian" value="{{ old('harga_pembelian') }}"> 
+                        @error('harga_pembelian')
+                            <span class="help-block">{{ $message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group @error('harga_penjualan') has-error @enderror">
                         <label for="">HARGA PENJUALAN</label>
-                         {{-- <input type="text" 
-                            name="harga_penjualan" 
-                            id="harga"
-                            class="form-control rupiah"
-                             value="{{ $hargaFormatted }}"
-                            oninput="formatCurrency(this)"> --}}
-
-                        <input type="number" name="harga_penjualan" class="form-control" placeholder="Masukkan harga penjualan Produk" value="{{ old('harga_penjualan') }}"> 
+                        <input type="number" name="harga_penjualan" class="form-control" placeholder="Masukkan harga penjualan" value="{{ old('harga_penjualan') }}"> 
                         @error('harga_penjualan')
                             <span class="help-block">{{ $message}}</span>
                         @enderror
@@ -101,14 +80,12 @@
                             <span class="help-block">{{ $message}}</span>
                         @enderror
                     </div>
-
                     {{-- <div class="form-group @error('keterangan') has-error @enderror">
                         <label for="">KETERANGAN</label>
                         <textarea name="keterangan" id="" row="3" class="form-control" placeholder="Masukkan KETERANGAN" 
                               value="{{ old('keterangan') }}"  required>
                         </textarea>
                     </div> --}}
-
                     <div class="form-group">
                         <input type="submit" value="Tambah" class ="btn btn-primary">
                     </div>
@@ -119,15 +96,15 @@
 @section('scripts')
 <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<script>
+{{-- <script>
   $(document).ready(function () {
      $('.rupiah').mask("#.##0", {reverse: true});
   });
-  </script>
+  </script> --}}
 @endsection
 
 @push('scripys')
-<script>
+{{-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Inisialisasi AutoNumeric
     new AutoNumeric('.input-rupiah', {
@@ -152,6 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
+</script> --}}
     
 @endpush
