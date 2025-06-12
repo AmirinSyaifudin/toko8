@@ -27,29 +27,12 @@ class FrontendController extends Controller
     public function katalogproduk($id)
     {
         $katagori   = Katagori::all();
-        // $produk  = Produk::where('katagori_id', $id)
-        //             ->with('katagori');
+        $produk     = Produk::where('katagori_id', $id)
+                            ->with('katagori')
+                            ->get();
 
-        $produk = DB::table('produk')
-                ->join('katagori', 'produk.katagori_id', '=', 'katagori.id')
-                ->where('katagori.id', 20)
-                ->select('produk.*', 'katagori.nama_katagori')
-                ->get();
-
-        // $produk = Produk::where('katagori_id', 1)
-        //   ->orderBy('harga_penjualan', 'desc')
-        //   ->with('katagori')
-        //   ->get();
-
-        // $katagori = Katagori::findOrFail($id);
-                    
-        dd($katagori, $produk);
-
-       
-
-        // dd($data);
+        // dd($katagori, $produk);
         return view('frontend.produk.katalogproduk', compact('katagori','produk'));
-        //  return view('frontend.produk.katalogproduk', $data);
     }
 
     public function frontdetailproduk($id)
@@ -58,7 +41,6 @@ class FrontendController extends Controller
         $produk      = Produk::findOrFail($id);
 
         return view('frontend.produk.detail', compact('katagori','produk'));
-        // return view('frontend.produk.detail');
     }
 
     public function frontkontak()
