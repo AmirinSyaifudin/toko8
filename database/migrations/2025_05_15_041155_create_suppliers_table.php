@@ -25,6 +25,7 @@ class CreateSuppliersTable extends Migration
             $table->string('no_telpon');
             $table->text('alamat');
             $table->text('keterangan')->nullable();
+             $table->enum('status', ['Belum Verifikasi', 'Sudah Verifikasi']);
             $table->timestamps();
         });
     }

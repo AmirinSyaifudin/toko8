@@ -38,7 +38,7 @@ class FrontendController extends Controller
     public function frontdetailproduk($id)
     {
         $katagori   = Katagori::all();
-        $produk      = Produk::findOrFail($id);
+        $produk     = Produk::findOrFail($id);
 
         return view('frontend.produk.detail', compact('katagori','produk'));
     }

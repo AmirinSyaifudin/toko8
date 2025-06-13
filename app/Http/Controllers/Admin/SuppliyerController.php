@@ -15,16 +15,32 @@ class SuppliyerController extends Controller
      */
     public function index()
     {
-        return view('admin.datasuppliyer.index', [
-            'nama'              => 'nama',
-            'tgl_lahir'         => 'tgl_lahir',
-            'tmpt_lahir'        => 'tmpt_lahir',
-            'email'             => 'email',
-            'kontak_suplier'   => 'kontak_suplier',
-            'no_telpon'         => 'no_telpon',
-            'alamat'            => 'alamat',
-            'keterangan'        => 'keterangan'
+        $datasuppliyer  = Suppliyer::all();
+
+        return view('admin.datasuppliyer.index', compact('datasuppliyer'));
+
+        // return view('admin.datasuppliyer.index', [
+        //     'nama'              => 'nama',
+        //     'tgl_lahir'         => 'tgl_lahir',
+        //     'tmpt_lahir'        => 'tmpt_lahir',
+        //     'email'             => 'email',
+        //     'kontak_suplier'   => 'kontak_suplier',
+        //     'no_telpon'         => 'no_telpon',
+        //     'alamat'            => 'alamat',
+        //     'keterangan'        => 'keterangan'
+        // ]);
+    }
+
+    public function verifikasi(Request $request, $id)
+    {
+        $data   = Suppliyer::find($id);
+        // $status = $request->status_sippliyer;
+
+        $data->update([
+            'status'   => 'Sudah Verifikasi'
         ]);
+
+       return redirect()->route('datasuppliyer');
     }
 
     /**
