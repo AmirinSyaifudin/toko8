@@ -13,7 +13,7 @@ class FrontendController extends Controller
     {
         $katagori   = Katagori::all();
         // $produk      = Produk::all();
-        $produk      = Produk::paginate(15);
+        $produk      = Produk::paginate(5);
 
          return view('frontend.templates.homepage', compact('katagori','produk'));
     }

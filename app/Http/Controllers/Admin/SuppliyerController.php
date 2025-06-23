@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produk;
 use App\Models\Suppliyer;
 use Illuminate\Http\Request;
 
@@ -18,27 +19,21 @@ class SuppliyerController extends Controller
         $datasuppliyer  = Suppliyer::all();
 
         return view('admin.datasuppliyer.index', compact('datasuppliyer'));
-
-        // return view('admin.datasuppliyer.index', [
-        //     'nama'              => 'nama',
-        //     'tgl_lahir'         => 'tgl_lahir',
-        //     'tmpt_lahir'        => 'tmpt_lahir',
-        //     'email'             => 'email',
-        //     'kontak_suplier'   => 'kontak_suplier',
-        //     'no_telpon'         => 'no_telpon',
-        //     'alamat'            => 'alamat',
-        //     'keterangan'        => 'keterangan'
-        // ]);
     }
 
     public function verifikasi(Request $request, $id)
     {
         $data   = Suppliyer::find($id);
-        // $status = $request->status_sippliyer;
+        $status = $request->status_suppliyer;
 
         $data->update([
             'status'   => 'Sudah Verifikasi'
         ]);
+
+        foreach ($status as $key => $value) {
+            Produk::where('suppliyer_id', $id)
+                ->update(['status_suppliyer' => $value]);
+        }
 
        return redirect()->route('datasuppliyer');
     }

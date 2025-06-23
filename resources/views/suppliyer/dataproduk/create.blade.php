@@ -12,6 +12,7 @@
                     @if ($supplier != null)
                         <input type="hidden" name="supplier_id" value="{{ $supplier->id }}">
                     @endif
+                    <input type="hidden" name="status_suppliyer" value="{{ $supplier->status }}">
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="form-group @error('foto') has-error @enderror">
                         <label for="">FOTO</label>
@@ -38,13 +39,13 @@
                             <span class="help-block">{{ $message}}</span>
                         @enderror
                     </div> --}}
-                    <div class="form-group @error('kode_barang') has-error @enderror">
+                    {{-- <div class="form-group @error('kode_barang') has-error @enderror">
                         <label for="">KODE PRODUK</label>
                         <input type="text" name="kode_barang" class="form-control" placeholder="Masukkan kode Produk" value="{{ old('kode_barang') }}"> 
                         @error('kode_barang')
                             <span class="help-block">{{ $message}}</span>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="form-group @error('nama_katagori') has-error @enderror">
                         <label for="">NAMA PRODUK</label>
                         <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Produk" value="{{ old('nama') }}"> 

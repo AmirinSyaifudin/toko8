@@ -1,6 +1,11 @@
 @extends('admin.templates.default')
 
 @section('content')
+<style>
+    nav {
+        text-align: center;
+    }
+</style>
       <h1>Data Suppliye </h1>
        @include('admin.templates.partials.alert')
           <div class="box">
@@ -15,15 +20,15 @@
                                     <th style="text-align: center">ID</th>
                                     <th style="text-align: center">FOTO</th>
                                     <th style="text-align: center">NAMA</th>
-                                    <th style="text-align: center">TANGGAL LAHIR</th>
-                                    <th style="text-align: center">TEMPAT LAHIR</th>
+                                    {{-- <th style="text-align: center">TANGGAL LAHIR</th>
+                                    <th style="text-align: center">TEMPAT LAHIR</th> --}}
                                     <th style="text-align: center">EMAIL</th>
                                     {{-- <th style="text-align: center">KONTAK SUPPLIYER</th> --}}
                                     <th style="text-align: center">NO TELPON</th>
-                                    <th style="text-align: center">ALAMAT</th>
-                                    <th style="text-align: center">KETERANGAN</th>
+                                    {{-- <th style="text-align: center">ALAMAT</th>
+                                    <th style="text-align: center">KETERANGAN</th> --}}
                                     <th style="text-align: center">STATUS</th>
-                                    <th style="text-align: center" width="180px"></th>
+                                    <th style="text-align: center"> ACTION</th>
                                 </tr>
                             </thead>
                         <tbody>
@@ -32,13 +37,13 @@
                                     <td width='5'>  {{ $loop-> index +1 }} </td>
                                     <td width='50'><img class="img-responsive" src="{{ url ('/admin/assets/covers/'. $value->foto) }}"> </td>
                                     <td width='20'> {{ $value->nama }}</td>
-                                    <td width='20'> {{ $value->tgl_lahir }}</td>
-                                    <td width='20'> {{ $value->tmpt_lahir }}</td>
+                                    {{-- <td width='20'> {{ $value->tgl_lahir }}</td>
+                                    <td width='20'> {{ $value->tmpt_lahir }}</td> --}}
                                     <td width='20'> {{ $value->email }}</td>
                                     {{-- <td width='20'> {{ $value->kontak_suplier }}</td> --}}
                                     <td width='20'> {{ $value->no_telpon }}</td>
-                                    <td width='20'> {{ $value->alamat }}</td>
-                                    <td width='20'> {{ $value->keterangan }}</td>
+                                    {{-- <td width='20'> {{ $value->alamat }}</td>
+                                    <td width='20'> {{ $value->keterangan }}</td> --}}
                                     <td width='20' style="text-align: center">
                                         @if ($value->status == 'Belum Verifikasi')
                                             <span style="color:brown"><b>{{ $value->status}} </b></span>
@@ -47,7 +52,13 @@
                                             <span style="color: blue"><b>{{ $value->status}}</b></span>
                                         @endif
                                     </td>
-                                    <td width='20'> 
+                                    <td style="text-align: center;"> 
+                                        <a href=""
+                                            class="btn btn-info" data-toggle="confirmation"
+                                            style="text-transform: uppercase"><i
+                                                class="icon-eye-open"></i>
+                                            &nbsp;Detail
+                                        </a>
                                         <form action="{{ route('verifikasi', $value->id) }}"
                                             method="POST"
                                             onsubmit="return confirm('Verifikasi Suppliyer, Anda Yakin ?')"

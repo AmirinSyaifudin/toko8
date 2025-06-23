@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth' => 'CheckRole:admin']], function () {
         Route::get('datacustomer/data', 'DataController@customer')->name('datacustomer.data');
         Route::get('/datacustomer/create', 'CustomerController@create')->name('datacustomer.create');
         Route::post('/datacustomer', 'CustomerController@store')->name('datacustomer.store');
+        Route::put('datacustomer/customerverifikasi/{id}','CustomerController@customerverifikasi')->name('customerverifikasi');
 
         // Produk   
         Route::get('adminproduk', 'ProdukController@index')->name('adminproduk');

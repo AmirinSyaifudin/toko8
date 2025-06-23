@@ -218,8 +218,10 @@
 						</div> --}}
 					</div><!--/recommended_items-->
 					 
-					{{ $produk->links() }} 
-
+					<div class="d-flex justify-content-center">
+							{{ $produk->links('pagination::bootstrap-4') }}
+					</div>
+					
 				</div>
 			</div>
 		</div>

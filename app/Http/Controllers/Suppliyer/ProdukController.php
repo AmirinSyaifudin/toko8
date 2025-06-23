@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProdukController extends Controller
 {
@@ -36,7 +37,13 @@ class ProdukController extends Controller
         $katagori   = Katagori::all();
         $supplier  = Suppliyer::where('user_id', auth()->user()->id)->first();
        
-         return view('suppliyer.dataproduk.create', compact('katagori','supplier'));
+        if ($supplier->status == 'Belum Verifikasi') {
+            // ('info','Akun Anda Belum Verifikasi', 'Mohon Tunggu 1x24 jam untuk proses Verifikasi');
+            return redirect()->route('suppliyerproduk');
+        } else {
+           return view('suppliyer.dataproduk.create', compact('katagori','supplier')); 
+        }
+        //  return view('suppliyer.dataproduk.create', compact('katagori','supplier'));
     }
 
     /**
@@ -60,17 +67,19 @@ class ProdukController extends Controller
         //     'keterangan'        => 'required'
         // ]);
 
-        $produk                 = new Produk;
-        $produk->user_id        = $request->input('user_id');
-        $produk->supplier_id   = $request->input('supplier_id');
-        $produk->kode_barang    = $request->input('kode_barang');
-        $produk->nama           = $request->input('nama');
-        $produk->katagori_id    = $request->input('katagori_id');
-        $produk->harga_pembelian= $request->input('harga_pembelian');
-        $produk->harga_penjualan= $request->input('harga_penjualan');
-        $produk->stok           = $request->input('stok');
-        $produk->unit           = $request->input('unit');
-        $produk->keterangan     = $request->input('keterangan');
+        $produk                     = new Produk;
+        $produk->user_id            = $request->input('user_id');
+        $produk->supplier_id        = $request->input('supplier_id');
+        $produk->kode_barang        = $request->date('Y') . Str::random(5);
+        //$produk->kode_barang        = $request->input('kode_barang');
+        $produk->nama               = $request->input('nama');
+        $produk->katagori_id        = $request->input('katagori_id');
+        $produk->harga_pembelian    = $request->input('harga_pembelian');
+        $produk->harga_penjualan    = $request->input('harga_penjualan');
+        $produk->stok               = $request->input('stok');
+        $produk->unit               = $request->input('unit');
+        $produk->status_suppliyer   = $request->input('status_suppliyer');
+        $produk->keterangan         = $request->input('keterangan');
 
           if ($request->hasFile('foto')) {
             $file  = $request->file('foto');

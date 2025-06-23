@@ -1,9 +1,10 @@
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    {{-- @php
-        $datacustomer = App\Customer::where('user_id', auth()->user()->id)->first();
-    @endphp --}}
+    @php
+        // $datacustomer = App\Customer::where('user_id', auth()->user()->id)->first();
+        $produk = App\Models\Suppliyer::where('user_id', auth()->user()->id)->first();
+    @endphp
    
     <section class="sidebar">
       <!-- Sidebar user panel -->
@@ -23,11 +24,6 @@
       @can('isCustomer')
           <div class="user-panel">
             <div class="pull-left image">
-              {{-- @if ($datacustomer == null )
-                 <img src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
-              @else  
-                <img src="{{ asset($datacustomer->foto) }}" class="img-circle" alt="User Image">
-              @endif --}}
                <img src="{{ asset('admin/assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             
             </div>
@@ -183,28 +179,25 @@
             </span>
           </a>
         </li>
-        {{-- <li class="accordion-group @if (Request::segment(1) == 'suppliyer') active @endif">
-          <a href="{{ route('suppliyer') }}">
-            <i class="fa fa-envelope"></i> <span>Data Suppliyer</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li> --}}
+        @if ($produk != null )
         <li class="accordion-group @if (Request::segment(1) == 'suppliyerproduk') active @endif">
-          <a href="{{ route('suppliyerproduk') }}">
-            <i class="fa fa-calendar"></i> <span>DATA PRODUK</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
+              <a href="{{ route('suppliyerproduk.create') }}">
+                <i class="fa fa-calendar"></i> <span>TAMBAH PRODUK</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
 
-         {{-- <li class="accordion-group @if (Request::segment(1) == 'suppliyerproduk') active @endif">
-          <a href="{{ route('suppliyerproduk') }}">
-            <i class="fa fa-calendar"></i> <span>DATA PRODUK</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li> --}}
+            <li class="accordion-group @if (Request::segment(1) == 'suppliyerproduk') active @endif">
+              <a href="{{ route('suppliyerproduk') }}">
+                <i class="fa fa-calendar"></i> <span>DATA PRODUK</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+        @endif
+        
+
        @endcan
       </ul>
     </section>

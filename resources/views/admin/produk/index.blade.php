@@ -18,8 +18,8 @@
                                     <th style="text-align: center">HARGA PEMBELIAN</th>
                                     <th style="text-align: center">HARGA PENJUALAN</th>
                                     <th style="text-align: center">STOK</th>
-                                    <th style="text-align: center">UNIT</th>
-                                    <th style="text-align: center">KETERANGAN</th>
+                                    {{-- <th style="text-align: center">UNIT</th> --}}
+                                    {{-- <th style="text-align: center">KETERANGAN</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,11 +29,11 @@
                                           <td width='50'><img class="img-responsive" src="{{ url ('/admin/assets/covers/'. $ap->foto) }}"> </td>
                                           <td width='20'> {{ $ap->kode }}</td>
                                           <td width='20'> {{ $ap->nama }}</td>
-                                          <td width='20'> {{ $ap->harga_pembelian }}</td>
-                                          <td width='20'> {{ $ap->harga_penjualan }}</td>
+                                          <td width='20'> Rp {{ number_format($ap->harga_pembelian, 0, ',', '.') }}</td>
+                                          <td width='20'> Rp {{ number_format($ap->harga_pembelian, 0, ',', '.') }}</td>
                                           <td width='20'> {{ $ap->stok }}</td>
-                                          <td width='20'> {{ $ap->unit }}</td>
-                                          <td width='20'> {{ $ap->keterangan }}</td>
+                                          {{-- <td width='20'> {{ $ap->unit }}</td> --}}
+                                          {{-- <td width='20'> {{ $ap->keterangan }}</td> --}}
                                     </tr>
                                 @empty
                                 @endforelse 
