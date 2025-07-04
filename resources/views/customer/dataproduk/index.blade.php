@@ -3,7 +3,7 @@
 @section('content')
       <h1>Data Produk </h1>
        @include('admin.templates.partials.alert')
-          <div class="box">
+            <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">DATA PRODUK</h3><br><br>
                 </div>
@@ -18,8 +18,8 @@
                                     <th style="text-align: center">HARGA PEMBELIAN</th>
                                     <th style="text-align: center">HARGA PENJUALAN</th>
                                     <th style="text-align: center">STOK</th>
-                                    <th style="text-align: center">UNIT</th>
-                                    <th style="text-align: center">KETERANGAN</th>
+                                    {{-- <th style="text-align: center">UNIT</th>
+                                    <th style="text-align: center">KETERANGAN</th> --}}
                                     <th style="text-align: center"></th>
                                     <th style="text-align: center"></th>
                                 </tr>
@@ -34,9 +34,9 @@
                                           <td width='20'> {{ $ap->harga_pembelian }}</td>
                                           <td width='20'> {{ $ap->harga_penjualan }}</td>
                                           <td width='20'> {{ $ap->stok }}</td>
-                                          <td width='20'> {{ $ap->unit }}</td>
-                                          <td width='20'> {{ $ap->keterangan }}</td>
-                                          <td width='5'>  <a href="" class="btn btn-warning">BELI</a></td>
+                                          {{-- <td width='20'> {{ $ap->unit }}</td>
+                                          <td width='20'> {{ $ap->keterangan }}</td> --}}
+                                          <td width='5'>  <a href="" class="btn btn-warning">MASUKKAN KERANJANG</a></td>
                                           <td width='5'>  <a href="" class="btn btn-info">DETAIL PRODUK</a></td>
                                           {{-- <td width='5'>
                                                 <form action="" method="post" style="display:inline;">
@@ -64,21 +64,4 @@
             });
         });
     </script>
-    {{-- <script>
-                $(function () {
-
-                        $('#dataTable').DataTable({
-                            processing: true,
-                            serverSide: true,
-                            ajax: '{{ route('katagori.data') }}',
-                            columns: [
-                                { data: 'DT_RowIndex', orderable: false, searchable : false},
-                                {data: 'nama_katagori', name: 'nama_katagori'},
-                                {data: 'keterangan', name: 'keterangan'},
-                                // { data: 'action', name: 'action', orderable: false, searchable: false},
-                            ]
-                        });
-                });
-
-    </script> --}}
 @endpush

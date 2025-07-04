@@ -79,27 +79,30 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
                         	<h2>SILAHKAN LOGIN </h2>
+
+                              @include('admin.templates.partials.alert')
+
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div>
                                     <input type="email" class="validate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
                                     placeholder="Email Address">
                                     @error('email')
-                                        <span class="helper-text" data-error="{{ $message }}"></span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>Email Salah !</strong>
+                                        </span>
                                     @enderror
                                 </div>
                                 <div>
-                                    <input type="password" class="@error('password') invalid @enderror" name="password" value=""
+                                    <input type="password" class="@error('password') invalid @enderror" name="password" value="{{ old('password') }}"
                                     placeholder="Password">
-                                    @error('password')
-                                        <span class="helper-text" data-error="{{ $message }}"></span>
+                                     @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                             <strong>Password Salah !</strong>
+                                        </span>
                                     @enderror
                                 </div>
-                                <span>
-                                    <input type="checkbox" class="checkbox">
-                                    Keep me signed in
-                                </span>
-                                <button type="submit" class="btn btn-default">Login</button>
+                                    <button type="submit" class="btn btn-default">Login</button>
                             </form>
                            <a class="btn btn-primary" href="{{route('register')}}">Register</a>
 					</div><!--/login form-->
@@ -125,6 +128,16 @@
     <script src="{{ asset('Eshopper/js/bootstrap.min.js' ) }}"></script>
     <script src="{{ asset('Eshopper/js/jquery.prettyPhoto.js' ) }}"></script>
     <script src="{{ asset('Eshopper/js/main.js' ) }}"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
 </body>
 </html>
 

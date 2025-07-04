@@ -20,6 +20,12 @@ class ProdukController extends Controller
         return view('customer.dataproduk.index', compact('customerproduk'));
     }
 
+    public function keranjang()
+    {
+         $customerproduk = Produk::all();
+
+       return view('customer.keranjang', compact('customerproduk'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -85,4 +91,6 @@ class ProdukController extends Controller
     {
         //
     }
+
+    
 }

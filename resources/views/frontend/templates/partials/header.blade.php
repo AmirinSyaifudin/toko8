@@ -84,13 +84,14 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="{{ asset('Eshopper/index.html') }}" class="active">Home</a></li>
+								<li><a href="{{ asset('/') }}" class="active">Home</a></li>
+								{{-- <li><a href="{{ asset('Eshopper/index.html') }}" class="active">Home</a></li> --}}
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     		<ul role="menu" class="sub-menu">
 								<li><a href="{{ route ('frontendproduk') }}">Produk</a></li>
 								{{-- <li><a href="{{ asset('Eshopper/shop.html') }}">Products</a></li> --}}
-								<li><a href="{{ asset('Eshopper/product-details.html') }}">Product Details</a></li> 
-								<li><a href="{{ asset('Eshopper/checkout.html') }}">Checkout</a></li> 
+								{{-- <li><a href="{{ asset('/') }}">Checkout</a></li>  --}}
+								{{-- <li><a href="{{ asset('Eshopper/checkout.html') }}">Checkout</a></li>  --}}
                                     </ul>
                                 </li> 
 					  {{-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -100,7 +101,8 @@
                                     </ul>
                                  </li>  --}}
                                           {{-- <li><a href="{{ asset('Eshopper/404.html') }}">404</a></li> --}}
-                                          <li><a href="{{ asset('Eshopper/contact-us.html') }}">Contact</a></li>
+                                          {{-- <li><a href="{{ asset('Eshopper/contact-us.html') }}">Contact</a></li> --}}
+							<li><a href="{{ asset('/') }}">Contact</a></li>
                                           </ul>
 						</div>
 					</div>

@@ -83,8 +83,15 @@
         </li> --}}
         @can('isAdmin')
         <li class="accordion-group @if (Request::segment(1) == 'katagori') active @endif">
+          <a href="{{ route('admindashboard') }}">
+            <i class="fa fa-calendar"></i> <span>DASHBOARD</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+         <li class="accordion-group @if (Request::segment(1) == 'katagori') active @endif">
           <a href="{{ route('adminkatagori') }}">
-            <i class="fa fa-calendar"></i> <span>Data Katagori</span>
+            <i class="fa fa-calendar"></i> <span>DATA KATAGORI</span>
             <span class="pull-right-container">
             </span>
           </a>
@@ -93,7 +100,7 @@
         {{-- <li class="treeview"> --}}
           <a href="{{ route('adminproduk') }}">
             <i class="fa fa-files-o"></i>
-            <span>Data  Produk</span>
+            <span>DATA PRODUK</span>
             <span class="pull-right-container">
               {{-- <span class="label label-primary pull-right">4</span> --}}
             </span>
@@ -101,14 +108,14 @@
         </li>
         <li class="accordion-group @if (Request::segment(1) == 'datacustomer') active @endif">
           <a href="{{ route('datacustomer') }}">
-            <i class="fa fa-envelope"></i> <span>Data Customer</span>
+            <i class="fa fa-envelope"></i> <span>DATA CUSTOMER</span>
             <span class="pull-right-container">
             </span>
           </a>
         </li>
         <li class="accordion-group @if (Request::segment(1) == 'datasuppliyer') active @endif">
           <a href="{{ route('datasuppliyer') }}">
-            <i class="fa fa-envelope"></i> <span>Data Suppliyer</span>
+            <i class="fa fa-envelope"></i> <span>DATA SUPPLIYER</span>
             <span class="pull-right-container">
             </span>
           </a>
@@ -121,7 +128,7 @@
        @can('isCustomer')
         <li class="accordion-group @if (Request::segment(1) == 'profilcustomer') active @endif">
           <a href="{{ route('profilcustomer') }}">
-            <i class="fa fa-calendar"></i> <span>Profil Customer</span>
+            <i class="fa fa-calendar"></i> <span>PROFIL CUSTOMER</span>
             <span class="pull-right-container">
             </span>
           </a>
@@ -133,9 +140,16 @@
             </span>
           </a>
         </li> --}}
-         <li>
+        <li>
+          <a href="{{ route ('customerkeranjang') }}">
+            <i class="fa fa-calendar"></i> <span>KERANJANG BELANJA</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
           <a href="{{ route ('customerproduk') }}">
-            <i class="fa fa-calendar"></i> <span>Data Produk</span>
+            <i class="fa fa-calendar"></i> <span>DATA PRODUK</span>
             <span class="pull-right-container">
             </span>
           </a>

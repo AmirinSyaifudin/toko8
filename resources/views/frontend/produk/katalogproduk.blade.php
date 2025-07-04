@@ -1,5 +1,13 @@
 @extends('frontend.templates.default')
 @section('content')
+<style>
+    .product-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover; /* opsional, memotong gambar jika ukuran tidak pas */
+        border-radius: 8px; /* opsional, untuk membuat sudut membulat */
+    }
+</style>
 <section>
 		<div class="container">
 			<div class="row">
@@ -33,8 +41,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="{{ url ('/admin/assets/covers/'. $pd->foto) }}" alt="" />
-										{{-- <h2>Rp. {{ $pd->harga_penjualan }}</h2> --}}
+										<img class="product-image" src="{{ url('/admin/assets/covers/'. $pd->foto) }}" alt="" />
 										 <h2>Rp {{ number_format($pd->harga_penjualan, 0, ',', '.') }}</h2>
 										<p>{{ $pd->nama }}</p>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Masukkan Keranjang</a>
@@ -58,7 +65,6 @@
 						@empty
 						@endforelse
 					</div><!--features_items-->
-                              
 					<div class="recommended_items"><!--recommended_items-->
 						{{-- <h2 class="title text-center">recommended items</h2> --}}
 						{{-- <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -154,9 +160,11 @@
 							  </a>			
 						</div> --}}
 					</div><!--/recommended_items-->
+					<div class="d-flex justify-content-center">
+						{{ $produk->links('pagination::bootstrap-4') }}
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 @endsection

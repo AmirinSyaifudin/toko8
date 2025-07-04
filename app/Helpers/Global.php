@@ -1,5 +1,31 @@
 <?php
 
+use App\Models\Customer;
+use App\Models\Katagori;
+use App\Models\Produk;
+use App\Models\Suppliyer;
+
+function totalProduct()
+{
+    return Produk::count();
+}
+
+function totalCustomer()
+{
+    return Customer::count();
+}
+
+function totalSuppliyer()
+{
+    return Suppliyer::count();
+}
+
+function totalKatagori()
+{
+    return Katagori::count();
+}
+
+
 if (!function_exists('formatRupiah')) {
     function formatRupiah($angka)
     {

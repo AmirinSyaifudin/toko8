@@ -47,7 +47,9 @@ Route::group(['middleware' => ['auth' => 'CheckRole:customer']], function () {
         Route::put('update/{id}', 'CustomerController@update')->name('update');
         // Route::post('saveprofil', 'CustomerController@store')->name('saveprofil.store');
 
-         // Produk   
+        // keranjang belanja
+        Route::get('customerkeranjang', 'ProdukController@keranjang')->name('customerkeranjang');
+        // Produk   
         Route::get('customerproduk', 'ProdukController@index')->name('customerproduk');
         // Route::get('dataproduk', 'CustomerController@dataproduk')->name('dataproduk');
         Route::get('editprofilcustomer', 'CustomerController@editprofil')->name('editprofilcustomer');
@@ -88,6 +90,9 @@ Route::group(['middleware' => ['auth' => 'CheckRole:suppliyer']], function () {
 
 Route::group(['middleware' => ['auth' => 'CheckRole:admin']], function () {
     Route::namespace('Admin')->group(function () {
+        // dashboard
+         Route::get('admindashboard', 'DashboardController@index')->name('admindashboard');
+        // katagori
         Route::get('adminkatagori', 'KatagoriController@index')->name('adminkatagori');
         Route::get('adminkatagori/data', 'DataController@adminkatagori')->name('adminkatagori.data');
         Route::get('/katagori/create', 'KatagoriController@create')->name('katagori.create');
